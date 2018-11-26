@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projet Covoiturage", "Projet Covoiturage\Projet Covoiturage.csproj", "{37231D7F-8415-400F-B738-6FBDC4E87935}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projet Covoiturage.Tests", "Projet Covoiturage.Tests\Projet Covoiturage.Tests.csproj", "{6B228A0D-32EA-439E-9C17-769F8EC0ACE2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37231D7F-8415-400F-B738-6FBDC4E87935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37231D7F-8415-400F-B738-6FBDC4E87935}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37231D7F-8415-400F-B738-6FBDC4E87935}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37231D7F-8415-400F-B738-6FBDC4E87935}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B228A0D-32EA-439E-9C17-769F8EC0ACE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B228A0D-32EA-439E-9C17-769F8EC0ACE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B228A0D-32EA-439E-9C17-769F8EC0ACE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B228A0D-32EA-439E-9C17-769F8EC0ACE2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1C4D64B3-3A2B-41D0-A927-96B6171DF2DB}
+	EndGlobalSection
+EndGlobal
