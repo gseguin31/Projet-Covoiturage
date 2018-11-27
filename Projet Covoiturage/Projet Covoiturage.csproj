@@ -225,8 +225,15 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TrajetsController.cs" />
+    <Compile Include="DAL\Repository\ChauffeurRepository.cs" />
     <Compile Include="DAL\Repository\GenericRepository.cs" />
-    <Compile Include="DAL\Services\IServiceChauffeur.cs" />
+    <Compile Include="DAL\Repository\IChauffeurRepository.cs" />
+    <Compile Include="DAL\Services\Interfaces\IServiceTrajet.cs" />
+    <Compile Include="DAL\Services\Interfaces\IServiceChauffeur.cs" />
+    <Compile Include="DAL\Services\ServiceChauffeur.cs" />
+    <Compile Include="DAL\UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="DAL\UnitOfWork\UnitOfWork.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -17,47 +17,8 @@ namespace Projet_Covoiturage.DAL.Repository
 
         public Chauffeur GetChauffeurById(int chauffeurId)
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Trajet> GetTrajetsFor(int chauffeurId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int GetTotalKmFor(int chauffeurId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int GetPonctualiteAVGFor(int chauffeurId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int GetSecuriteAVGFor(int chauffeurId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int GetConfortAVGFor(int chauffeurId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int GetCourtoisieAVGFor(int chauffeurId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int GetFiabiliteAVGFor(int chauffeurId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Vehicule GetVehiculeFor(int chauffeurId)
-        {
-            throw new NotImplementedException();
+            //euh.. à voir
+            return (Chauffeur)context.Users.Find(chauffeurId);
         }
 
         public void Save()
