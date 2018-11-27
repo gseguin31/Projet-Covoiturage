@@ -7,7 +7,7 @@ namespace Projet_Covoiturage.DAL.Repository
 {
     public class GenericRepository<TEntity> where TEntity : class
     {
-        internal BaroEmoContext context;
+        internal ApplicationDbContext context;
         internal DbSet<TEntity> dbSet;
 
         public GenericRepository(BaroEmoContext context)
