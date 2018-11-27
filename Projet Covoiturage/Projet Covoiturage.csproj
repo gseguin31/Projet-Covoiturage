@@ -302,6 +302,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\AccountRegisterPicker.cshtml" />
     <Content Include="Views\Account\RegisterClient.cshtml" />
+    <Content Include="Views\Account\RegisterChauffeur.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

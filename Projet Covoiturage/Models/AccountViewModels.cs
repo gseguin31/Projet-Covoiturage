@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Projet_Covoiturage.Models
@@ -98,6 +99,24 @@ namespace Projet_Covoiturage.Models
         [Display(Name = "Confirmer le mot de passe ")]
         [Compare("Password", ErrorMessage = "Le mot de passe et le mot de passe de confirmation ne correspondent pas.")]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class RegisterViewModelChauffeur : RegisterViewModel
+    {
+
+        [Required]
+        public DateTime DatePermis { get; set; }
+
+        
+        public DateTime DateEmbauche { get; set; }
+
+        [Required]
+        public string Modele { get; set; }
+        [Required]
+        public DateTime DateMiseEnRoute { get; set; }
+        [Required]
+        public int NombrePlace { get; set; }
+
     }
 
     public class ResetPasswordViewModel

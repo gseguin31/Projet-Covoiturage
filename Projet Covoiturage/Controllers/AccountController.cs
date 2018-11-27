@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Projet_Covoiturage.Models;
@@ -147,28 +148,76 @@ namespace Projet_Covoiturage.Controllers
         {
             return View();
         }
-        
+
+        [AllowAnonymous]
+        public ActionResult RegisterChauffeur()
+        {
+            return View();
+        }
+
 
         //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> RegisterClient(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                
+                   var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Age = model.Age, Nom = model.Nom,
+                        Telephone = model.Telephone, Prenom = model.Prenom, Ville = model.ville };
+                
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // Pour plus d'informations sur l'activation de la confirmation de compte et de la réinitialisation de mot de passe, visitez https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Envoyer un message électronique avec ce lien
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirmez votre compte", "Confirmez votre compte en cliquant <a href=\"" + callbackUrl + "\">ici</a>");
+
+                    //La creation du role se fait dans le startup
+                    //attribution du role
+                    UserManager.AddToRole(user.Id, "Client");
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
+            }
+
+            // Si nous sommes arrivés là, un échec s’est produit. Réafficher le formulaire
+            return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterChauffeur(RegisterViewModelChauffeur model)
+        {
+            if (ModelState.IsValid)
+            {
+                    ApplicationUser user = new Chauffeur
+                    {
+                        UserName = model.Email,
+                        Email = model.Email,
+                        Age = model.Age,
+                        Nom = model.Nom,
+                        Telephone = model.Telephone,
+                        Prenom = model.Prenom,
+                        Ville = model.ville,
+                        DateEmbauche = DateTime.Now,
+                        DatePermis = model.DatePermis,
+                        Vehicule = new Vehicule { Modele = model.Modele, DateMiseEnRoute = model.DateMiseEnRoute, NombrePlace = model.NombrePlace }
+                    };
+
+
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    //La creation du role se fait dans le startup
+                    //attribution du role
+                    UserManager.AddToRole(user.Id, "Chauffeur");
 
                     return RedirectToAction("Index", "Home");
                 }
