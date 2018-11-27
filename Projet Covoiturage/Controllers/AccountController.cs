@@ -139,8 +139,15 @@ namespace Projet_Covoiturage.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            return View("AccountRegisterPicker");
+        }
+
+        [AllowAnonymous]
+        public ActionResult RegisterClient()
+        {
             return View();
         }
+        
 
         //
         // POST: /Account/Register

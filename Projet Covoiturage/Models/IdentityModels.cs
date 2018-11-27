@@ -22,7 +22,7 @@ namespace Projet_Covoiturage.Models
         public string Courriel { get; set; }
         public string Telephone { get; set; }
         public string Ville { get; set; }
-        public string Age { get; set; }
+        public int Age { get; set; }
         public virtual List<Reservation> Reservations { get; set; }
     }
 

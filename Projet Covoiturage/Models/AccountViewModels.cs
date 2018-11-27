@@ -64,6 +64,25 @@ namespace Projet_Covoiturage.Models
 
     public class RegisterViewModel
     {
+
+        [Required]
+        public string Nom { get; set; }
+
+        [Required]
+        [Display(Name = "Prénom")]
+        public string Prenom { get; set; }
+
+        [Required]
+        [Display(Name = "Téléphone")]
+        public string Telephone { get; set; }
+
+        [Required]
+        public string ville { get; set; }
+
+        [Required]
+        [Display(Name = "Âge")]
+        public int Age { get; set; }
+        
         [Required]
         [EmailAddress]
         [Display(Name = "Courrier électronique")]
