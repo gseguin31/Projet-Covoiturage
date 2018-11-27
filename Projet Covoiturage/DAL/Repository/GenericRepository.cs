@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Projet_Covoiturage.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 
 namespace Projet_Covoiturage.DAL.Repository
@@ -10,7 +13,7 @@ namespace Projet_Covoiturage.DAL.Repository
         internal ApplicationDbContext context;
         internal DbSet<TEntity> dbSet;
 
-        public GenericRepository(BaroEmoContext context)
+        public GenericRepository(ApplicationDbContext context)
         {
             this.context = context;
             this.dbSet = context.Set<TEntity>();
