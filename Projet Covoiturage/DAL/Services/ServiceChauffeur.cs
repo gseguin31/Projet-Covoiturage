@@ -16,7 +16,7 @@ namespace Projet_Covoiturage.DAL.Services
             uow = uw;
         }
 
-        public Chauffeur GetChauffeurById(int chauffeurId)
+        public Chauffeur GetChauffeurById(string chauffeurId)
         {
             return uow.ChauffeurRepository.GetByID(chauffeurId);
         }

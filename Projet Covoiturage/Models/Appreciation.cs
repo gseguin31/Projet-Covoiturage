@@ -7,7 +7,7 @@ namespace Projet_Covoiturage.Models
 {
     public class Appreciation
     {
-        public int Id{ get; set; }
+        public string Id{ get; set; }
         public string Commentaire { get; set; }
         public int Ponctualite { get; set; }
         public int Securite { get; set; }

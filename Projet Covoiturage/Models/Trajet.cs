@@ -7,7 +7,7 @@ namespace Projet_Covoiturage.Models
 {
     public class Trajet
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string VilleDepart { get; set; }
         public string VilleDestination { get; set; }
         public DateTime DateDepart { get; set; }

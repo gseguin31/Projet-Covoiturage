@@ -10,9 +10,9 @@ namespace Projet_Covoiturage.Models
     public class Reservation
     {
         [Key , Column(Order =1)]
-        public int ClientId { get; set; }
+        public string ClientId { get; set; }
 
         [Key, Column(Order = 2)]
-        public int TrajetId { get; set; }
+        public string TrajetId { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace Projet_Covoiturage.DAL.UnitOfWork
     public interface IUnitOfWork : IDisposable
     {
         GenericRepository<Chauffeur> ChauffeurRepository { get; }
+        GenericRepository<Client> ClientRepository { get; }
         void Save();
         //void Dispose();
         //void Dispose(bool disposing);

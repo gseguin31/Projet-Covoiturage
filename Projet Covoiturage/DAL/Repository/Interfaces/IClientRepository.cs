@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Projet_Covoiturage.DAL.Repository
 {
-    public interface IChauffeurRepository : IDisposable
+    interface IClientRepository : IDisposable
     {
-        Chauffeur GetChauffeurById(int chauffeurId);
+        Client GetClientById(string clientId);
         void Save();
     }
 }

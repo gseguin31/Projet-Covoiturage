@@ -166,7 +166,7 @@ namespace Projet_Covoiturage.Controllers
             if (ModelState.IsValid)
             {
                 
-                   var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Age = model.Age, Nom = model.Nom,
+                   var user = new Client { UserName = model.Email, Email = model.Email, Age = model.Age, Nom = model.Nom,
                         Telephone = model.Telephone, Prenom = model.Prenom, Ville = model.ville };
                 
 

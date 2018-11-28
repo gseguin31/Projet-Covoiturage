@@ -7,7 +7,7 @@ namespace Projet_Covoiturage.Models
 {
     public class Vehicule
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Modele { get; set; }
         public DateTime DateMiseEnRoute { get; set; }
         public int NombrePlace{ get; set; }

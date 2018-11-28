@@ -2,22 +2,23 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Projet_Covoiturage.DAL.Repository
 {
-    public class ChauffeurRepository : IChauffeurRepository
+    public class ClientRepository : IClientRepository
     {
         private ApplicationDbContext context;
 
-        public ChauffeurRepository(ApplicationDbContext context)
+        public ClientRepository(ApplicationDbContext context)
         {
             this.context = context;
         }
 
-        public Chauffeur GetChauffeurById(string chauffeurId)
+        public Client GetClientById(string clientId)
         {
-            return (Chauffeur)context.Users.FirstOrDefault(x => x.Id == chauffeurId);
+            return (Client)context.Users.FirstOrDefault(x => x.Id == clientId);
         }
 
         public void Save()
@@ -44,5 +45,6 @@ namespace Projet_Covoiturage.DAL.Repository
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
     }
 }

@@ -11,6 +11,7 @@ namespace Projet_Covoiturage.DAL.UnitOfWork
     {
         public ApplicationDbContext context;
         public GenericRepository<Chauffeur> chauffeurRepo;
+        public GenericRepository<Client> clientRepo;
 
         public UnitOfWork(ApplicationDbContext cx)
         {
@@ -26,6 +27,18 @@ namespace Projet_Covoiturage.DAL.UnitOfWork
                     chauffeurRepo = new GenericRepository<Chauffeur>(context);
                 }
                 return chauffeurRepo;
+            }
+        }
+
+        public GenericRepository<Client> ClientRepository
+        {
+            get
+            {
+                if (chauffeurRepo == null)
+                {
+                    chauffeurRepo = new GenericRepository<Chauffeur>(context);
+                }
+                return clientRepo;
             }
         }
 

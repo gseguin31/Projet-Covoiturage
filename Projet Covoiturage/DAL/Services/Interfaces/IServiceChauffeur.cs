@@ -9,7 +9,7 @@ namespace Projet_Covoiturage.DAL.Services
 {
     public interface IServiceChauffeur
     {
-        Chauffeur GetChauffeurById(int chauffeurId);
+        Chauffeur GetChauffeurById(string chauffeurId);
         IEnumerable<Trajet> GetTrajetsFor(int chauffeurId);
         double GetTotalKmFor(int chauffeurId);
         double GetPonctualiteAVGFor(int chauffeurId);
