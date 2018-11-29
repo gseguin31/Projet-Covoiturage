@@ -1,10 +1,16 @@
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Projet_Covoiturage.Controllers;
 using Projet_Covoiturage.DAL.Services;
 using Projet_Covoiturage.DAL.Services.Interface;
 using Projet_Covoiturage.DAL.UnitOfWork;
+using Projet_Covoiturage.Models;
 using System;
 using System.Web.Mvc;
 using Unity;
 using Unity.AspNet.Mvc;
+using Unity.Injection;
+using Unity.Lifetime;
 
 namespace Projet_Covoiturage
 {
@@ -26,7 +32,12 @@ namespace Projet_Covoiturage
             container.RegisterType<IUnitOfWork, UnitOfWork>();
             container.RegisterType<IServiceChauffeur, ServiceChauffeur>();
             container.RegisterType<IServiceClient, ServiceClient>();
-            container.RegisterType<IServiceTrajet, IServiceTrajet>();
+            container.RegisterType<IServiceTrajet, ServiceTrajet>();
+            container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>();
+            container.RegisterType<UserManager<ApplicationUser>>();
+            container.RegisterType<IdentityDbContext<ApplicationUser>, ApplicationDbContext>();
+            container.RegisterType<ApplicationUserManager>();
+            container.RegisterType<AccountController>(new InjectionConstructor());
         }
     }
 }

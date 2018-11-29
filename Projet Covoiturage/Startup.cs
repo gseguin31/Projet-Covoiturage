@@ -61,8 +61,8 @@ namespace Projet_Covoiturage
 
             //Create basic user for test purposes
             var user2 = new ApplicationUser();
-            user2.Email = "Client@Client.Client";
-            user2.UserName = "Client@Client.Client";
+            user2.Email = "client@client.client";
+            user2.UserName = "client@client.client";
             string userPWD2 = "Password1!";
             var result2 = await UserManager.CreateAsync(user2, userPWD2);
 
