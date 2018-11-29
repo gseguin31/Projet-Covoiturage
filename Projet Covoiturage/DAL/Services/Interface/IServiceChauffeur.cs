@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projet_Covoiturage.DAL.Services
+namespace Projet_Covoiturage.DAL.Services.Interface
 {
     public interface IServiceChauffeur
     {

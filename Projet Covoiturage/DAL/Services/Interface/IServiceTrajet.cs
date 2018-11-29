@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projet_Covoiturage.DAL.Services.interfa
+namespace Projet_Covoiturage.DAL.Services.Interface
 {
-        interface IServiceTrajet
+    public interface IServiceTrajet
     {
         List<Trajet> Filtre(string depar, string arriver);
 
