@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Projet_Covoiturage.DAL.Services;
 using Projet_Covoiturage.DAL.Services.Interface;
 using Projet_Covoiturage.Models;
 
@@ -18,6 +19,10 @@ namespace Projet_Covoiturage.Controllers
         private IServiceTrajet service;
         // GET: Trajets
 
+        public TrajetsController(IServiceTrajet serviceTrajet)
+        {
+            this.service = serviceTrajet;
+        }
         public ActionResult Indexfiltre(String depart, String arriver)
         {
             return View(service.Filtre(depart, arriver));

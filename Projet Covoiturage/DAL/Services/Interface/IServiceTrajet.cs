@@ -9,14 +9,8 @@ namespace Projet_Covoiturage.DAL.Services.Interface
 {
     public interface IServiceTrajet
     {
-        List<Trajet> Filtre(string depar, string arriver);
-
-        void Reserver(ApplicationUser client, int trajetId);
-
-        void AnnuleReserver(ApplicationUser client, int trajetId);
-
-        void CreateTrajet(ApplicationUser chaufeur, Trajet courrent);
-
-        Trajet GetTrajet(int id);
+        Trajet GetTrajetById(string trajetId);
+        IEnumerable<Trajet> GetAllTrajet();
+        IEnumerable<Trajet> GetTrajetsFor(int chauffeurId);
     }
 }
