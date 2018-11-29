@@ -8,13 +8,43 @@ using System.Web;
 
 namespace Projet_Covoiturage.DAL.Services
 {
-    public class ServiceTrajet 
+    public class ServiceTrajet : IServiceTrajet
     {
         private IUnitOfWork uow;
 
         public ServiceTrajet(IUnitOfWork uw)
         {
             uow = uw;
+        }
+
+        public void CreateTrajet(Trajet trajet)
+        {
+            uow.TrajetRepository.Insert(trajet);
+        }
+
+        public void DeleteTrajet(string id)
+        {
+            uow.TrajetRepository.Delete(id);
+        }
+
+        public IEnumerable<Trajet> GetAllTrajet()
+        {
+            return uow.TrajetRepository.Get().ToList();
+        }
+
+        public Trajet GetTrajetById(string trajetId)
+        {
+            return uow.TrajetRepository.GetByID(trajetId);
+        }
+
+        public IEnumerable<Trajet> GetTrajetsFor(string chauffeurId)
+        {
+            return uow.TrajetRepository.Get(x => x.Chauffeur.Id == chauffeurId).ToList();
+        }
+
+        public void UpdateTrajet(Trajet trajet)
+        {
+            uow.TrajetRepository.Update(trajet);
         }
     }
 }
