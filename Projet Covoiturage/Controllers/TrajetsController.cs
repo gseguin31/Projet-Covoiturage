@@ -18,13 +18,14 @@ namespace Projet_Covoiturage.Controllers
         private IServiceTrajet service;
         // GET: Trajets
 
-        public ActionResult Indexfiltre(String depar, String arriver)
+        public ActionResult Indexfiltre(String depart, String arriver)
         {
-            return View(service.Filtre(depar, arriver));
+            return View(service.Filtre(depart, arriver));
         }
 
         public ActionResult Index()
         {
+
             return View();
         }
 

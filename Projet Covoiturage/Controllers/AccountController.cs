@@ -80,7 +80,7 @@ namespace Projet_Covoiturage.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index", "Trajets");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -179,7 +179,7 @@ namespace Projet_Covoiturage.Controllers
                     //attribution du role
                     UserManager.AddToRole(user.Id, "Client");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Trajets");
                 }
                 AddErrors(result);
             }
