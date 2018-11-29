@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Data.Entity.Validation;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -195,8 +198,8 @@ namespace Projet_Covoiturage.Controllers
         {
             if (ModelState.IsValid)
             {
-                    ApplicationUser user = new Chauffeur
-                    {
+                var user = new Chauffeur
+                {
                         UserName = model.Email,
                         Email = model.Email,
                         Age = model.Age,
@@ -206,10 +209,9 @@ namespace Projet_Covoiturage.Controllers
                         Ville = model.ville,
                         DateEmbauche = DateTime.Now,
                         DatePermis = model.DatePermis,
-                        Vehicule = new Vehicule { Modele = model.Modele, DateMiseEnRoute = model.DateMiseEnRoute, NombrePlace = model.NombrePlace }
+                        Vehicule = new Vehicule {  Id = Guid.NewGuid().ToString(), Modele = model.Modele, DateMiseEnRoute = model.DateMiseEnRoute, NombrePlace = model.NombrePlace }
                     };
-
-
+                
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -218,8 +220,8 @@ namespace Projet_Covoiturage.Controllers
                     //La creation du role se fait dans le startup
                     //attribution du role
                     UserManager.AddToRole(user.Id, "Chauffeur");
-
-                    return RedirectToAction("Index", "Home");
+                    // TODO rediriger vers les detail du chauffeur id cree dans le controleur chauffeur
+                    return RedirectToAction("Index", "Trajets");
                 }
                 AddErrors(result);
             }
@@ -478,7 +480,7 @@ namespace Projet_Covoiturage.Controllers
 
             base.Dispose(disposing);
         }
-
+        
         #region Applications auxiliaires
         // Utilisé(e) pour la protection XSRF lors de l'ajout de connexions externes
         private const string XsrfKey = "XsrfId";

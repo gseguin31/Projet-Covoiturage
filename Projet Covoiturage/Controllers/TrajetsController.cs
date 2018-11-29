@@ -38,13 +38,13 @@ namespace Projet_Covoiturage.Controllers
 
         // GET: Trajets/Details/5
     
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trajet trajet = db.Trajets.Find(id);
+            Trajet trajet = service.GetTrajetById(id);
             if (trajet == null)
             {
                 return HttpNotFound();
