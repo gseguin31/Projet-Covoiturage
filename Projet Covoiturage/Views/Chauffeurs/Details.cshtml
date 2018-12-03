@@ -1,4 +1,5 @@
-﻿@model Projet_Covoiturage.Models.Chauffeur
+﻿@model Projet_Covoiturage.Models.ChauffeurInfoViewModel
+
 
 @{
     ViewBag.Title = "Details";
@@ -11,160 +12,104 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Nom)
+            @Html.DisplayNameFor(model => model.Vehicule.Modele)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Nom)
+            @Html.DisplayFor(model => model.Vehicule.Modele)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Prenom)
+            @Html.DisplayNameFor(model => model.Vehicule.NombrePlace)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Prenom)
+            @Html.DisplayFor(model => model.Vehicule.NombrePlace)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Courriel)
+            @Html.DisplayNameFor(model => model.Vehicule.DateMiseEnRoute)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Courriel)
+            @Html.DisplayFor(model => model.Vehicule.DateMiseEnRoute)
+        </dd>
+
+        @foreach (var currentTrajet in Model.Trajets)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => currentTrajet.DateDepart)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => currentTrajet.DateDepart)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => currentTrajet.HeureArrivee)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => currentTrajet.HeureArrivee)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => currentTrajet.VilleDepart)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => currentTrajet.VilleDepart)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => currentTrajet.VilleDestination)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => currentTrajet.VilleDestination)
+            </dd>
+        }
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ponctualite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ponctualite)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Telephone)
+            @Html.DisplayNameFor(model => model.Securite)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Telephone)
+            @Html.DisplayFor(model => model.Securite)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Ville)
+            @Html.DisplayNameFor(model => model.Fiabilite)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Ville)
+            @Html.DisplayFor(model => model.Fiabilite)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Age)
+            @Html.DisplayNameFor(model => model.Confort)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Age)
+            @Html.DisplayFor(model => model.Confort)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayNameFor(model => model.Courtoisie)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EmailConfirmed)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmailConfirmed)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PasswordHash)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PasswordHash)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SecurityStamp)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SecurityStamp)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumberConfirmed)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TwoFactorEnabled)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TwoFactorEnabled)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LockoutEndDateUtc)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LockoutEnabled)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LockoutEnabled)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AccessFailedCount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AccessFailedCount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DatePermis)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DatePermis)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateEmbauche)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateEmbauche)
+            @Html.DisplayFor(model => model.Courtoisie)
         </dd>
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

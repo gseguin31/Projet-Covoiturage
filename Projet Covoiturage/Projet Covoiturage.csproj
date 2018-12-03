@@ -257,6 +257,8 @@
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\Trajet.cs" />
     <Compile Include="Models\Vehicule.cs" />
+    <Compile Include="Models\ViewModel\ChauffeurInfoViewModel.cs" />
+    <Compile Include="Models\ViewModel\FilteTrajet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -382,7 +384,6 @@
     <Content Include="Views\Chauffeurs\Delete.cshtml" />
     <Content Include="Views\Chauffeurs\Details.cshtml" />
     <Content Include="Views\Chauffeurs\Edit.cshtml" />
-    <Content Include="Views\Chauffeurs\Index.cshtml" />
     <Content Include="Views\Appreciations\Create.cshtml" />
     <Content Include="Views\Appreciations\Delete.cshtml" />
     <Content Include="Views\Appreciations\Details.cshtml" />

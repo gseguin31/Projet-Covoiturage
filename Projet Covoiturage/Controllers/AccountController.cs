@@ -80,10 +80,19 @@ namespace Projet_Covoiturage.Controllers
             // Ceci ne comptabilise pas les échecs de connexion pour le verrouillage du compte
             // Pour que les échecs de mot de passe déclenchent le verrouillage du compte, utilisez shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var user = await UserManager.FindByNameAsync(model.Email);
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToAction("Index", "Trajets");
+                    //un client se login rediriger au trajet
+                    if (await UserManager.IsInRoleAsync(user.Id, "Client"))
+                    {
+                        return RedirectToAction("Index", "Trajets");
+                    }
+                    else
+                        // un chauffeur se login rediriger a ses details
+                        return RedirectToAction("Details", "Chauffeurs", user);
+
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -200,18 +209,18 @@ namespace Projet_Covoiturage.Controllers
             {
                 var user = new Chauffeur
                 {
-                        UserName = model.Email,
-                        Email = model.Email,
-                        Age = model.Age,
-                        Nom = model.Nom,
-                        Telephone = model.Telephone,
-                        Prenom = model.Prenom,
-                        Ville = model.ville,
-                        DateEmbauche = DateTime.Now,
-                        DatePermis = model.DatePermis,
-                        Vehicule = new Vehicule {  Id = Guid.NewGuid().ToString(), Modele = model.Modele, DateMiseEnRoute = model.DateMiseEnRoute, NombrePlace = model.NombrePlace }
-                    };
-                
+                    UserName = model.Email,
+                    Email = model.Email,
+                    Age = model.Age,
+                    Nom = model.Nom,
+                    Telephone = model.Telephone,
+                    Prenom = model.Prenom,
+                    Ville = model.ville,
+                    DateEmbauche = DateTime.Now,
+                    DatePermis = model.DatePermis,
+                    Vehicule = new Vehicule { Id = Guid.NewGuid().ToString(), Modele = model.Modele, DateMiseEnRoute = model.DateMiseEnRoute, NombrePlace = model.NombrePlace }
+                };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -221,7 +230,7 @@ namespace Projet_Covoiturage.Controllers
                     //attribution du role
                     UserManager.AddToRole(user.Id, "Chauffeur");
                     // TODO rediriger vers les detail du chauffeur id cree dans le controleur chauffeur
-                    return RedirectToAction("Index", "Trajets");
+                    return RedirectToAction("Details", "Chauffeurs", user.Id);
                 }
                 AddErrors(result);
             }

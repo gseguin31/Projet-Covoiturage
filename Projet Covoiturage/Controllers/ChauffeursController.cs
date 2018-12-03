@@ -22,26 +22,38 @@ namespace Projet_Covoiturage.Controllers
             this.serviceChauffeur = serviceChauffeur;
         }
 
-        // GET: Chauffeurs
-        public ActionResult Index(string id)
+        public ActionResult Details(Chauffeur chauffeur)
         {
-            return View(serviceChauffeur.GetChauffeurById(id));
-        }
-
-        // GET: Chauffeurs/Details/5
-        public ActionResult Details(string id)
-        {
-            if (id == null)
+            if (chauffeur == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Chauffeur chauffeur = (Chauffeur)db.Users.Find(id);
-            if (chauffeur == null)
+            ChauffeurInfoViewModel vm = new ChauffeurInfoViewModel
             {
-                return HttpNotFound();
-            }
-            return View(chauffeur);
+                Confort = serviceChauffeur.GetConfortAVGFor(chauffeur.Id),
+                Courtoisie = serviceChauffeur.GetCourtoisieAVGFor(chauffeur.Id),
+                Fiabilite = serviceChauffeur.GetFiabiliteAVGFor(chauffeur.Id),
+                Ponctualite = serviceChauffeur.GetPonctualiteAVGFor(chauffeur.Id),
+                Securite = serviceChauffeur.GetSecuriteAVGFor(chauffeur.Id),
+
+                // a mettre lorsque le service acceptera
+                Trajets = serviceChauffeur.GetTrajetsFor(chauffeur.Id).ToList(),
+                Vehicule = serviceChauffeur.GetVehiculeFor(chauffeur.Id)
+
+                //// a enlever lorsque le service acceptera
+                //Trajets = new List<Trajet> { new Trajet { Id = "grosN", Appreciations = new List<Appreciation>(),
+                //    Chauffeur = chauffeur, DateDepart = DateTime.Now, HeureArrivee = DateTime.Now.AddHours(2),
+                //    Reservations = new List<Reservation>(), VilleDepart = "tamere", VilleDestination = "ton autre mere"},
+                //new Trajet { Id = "grosN", Appreciations = new List<Appreciation>(),
+                //    Chauffeur = chauffeur, DateDepart = DateTime.Now, HeureArrivee = DateTime.Now.AddHours(2),
+                //    Reservations = new List<Reservation>(), VilleDepart = "tasoeur", VilleDestination = "ton autre soeur"}},
+                //Vehicule = new Vehicule { DateMiseEnRoute = DateTime.Now, Id = "char", Modele = "subaru malade", NombrePlace = 3 }
+            };
+
+            return View(vm);
         }
+
+        
 
         // GET: Chauffeurs/Create
         public ActionResult Create()
