@@ -11,6 +11,7 @@ namespace Projet_Covoiturage.DAL.Services.Interface
     {
         Trajet GetTrajetById(string trajetId);
         IEnumerable<Trajet> GetAllTrajet();
+        IEnumerable<Trajet> GetTrajetsFor(string villeDepard,string villeArriver);
         IEnumerable<Trajet> GetTrajetsFor(string chauffeurId);
         void CreateTrajet(Trajet trajet);
         void DeleteTrajet(string id);

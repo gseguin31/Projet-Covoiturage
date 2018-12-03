@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
 using Projet_Covoiturage.Models;
+using System;
 using System.Threading.Tasks;
 
 [assembly: OwinStartupAttribute(typeof(Projet_Covoiturage.Startup))]
@@ -71,6 +72,8 @@ namespace Projet_Covoiturage
                 var result1 = UserManager.AddToRole(user2.Id, "Client");
 
             }
+            context.Trajets.Add(new Trajet { VilleDepart = "tamere", VilleDestination = "ton autre mere", DateDepart = DateTime.Now, HeureArrivee = DateTime.Now.AddHours(24) });
+            context.SaveChanges();
         }
     }
 }
