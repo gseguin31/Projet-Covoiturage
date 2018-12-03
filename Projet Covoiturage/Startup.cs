@@ -3,7 +3,6 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
 using Projet_Covoiturage.Models;
-using System;
 using System.Threading.Tasks;
 
 [assembly: OwinStartupAttribute(typeof(Projet_Covoiturage.Startup))]
@@ -33,7 +32,7 @@ namespace Projet_Covoiturage
                 var role = new IdentityRole();
                 role.Name = "Chauffeur";
                 roleManager.Create(role);
-
+                
 
                 var user = new ApplicationUser();
                 user.UserName = "chauffeur@chauffeur.chauffeur";
@@ -72,11 +71,6 @@ namespace Projet_Covoiturage
                 var result1 = UserManager.AddToRole(user2.Id, "Client");
 
             }
-
-            Trajet trajet = new Trajet { VilleDepart = "tamere", VilleDestination = "ton autre mere", DateDepart = DateTime.Now, HeureArrivee = DateTime.Now.AddHours(24) };
-            context.Trajets.Add(trajet);
-            context.SaveChanges();
-
         }
     }
 }

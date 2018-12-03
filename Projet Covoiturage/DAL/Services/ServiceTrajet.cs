@@ -42,11 +42,6 @@ namespace Projet_Covoiturage.DAL.Services
             return uow.TrajetRepository.Get(x => x.Chauffeur.Id == chauffeurId).ToList();
         }
 
-        public IEnumerable<Trajet> GetTrajetsFor(string villeDepard, string villeDestination)
-        {
-            return uow.TrajetRepository.Get(x => x.VilleDepart == villeDepard&& x.VilleDestination==villeDestination).ToList();
-        }
-
         public void UpdateTrajet(Trajet trajet)
         {
             uow.TrajetRepository.Update(trajet);
