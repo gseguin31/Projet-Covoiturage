@@ -1,10 +1,10 @@
-﻿@*@Model
+﻿@model Projet_Covoiturage.Models.ViewModel.FilteTrajet
 
 <div class="form-group">
     @Html.LabelFor(model => model, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
         @Html.EditorFor(model => model, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model, "", new { @class = "text-danger" })
+        @Html.ValidationMessageFor(model => model.depard, "", new { @class = "text-danger" })
     </div>
 </div>
 
@@ -12,7 +12,7 @@
     @Html.LabelFor(model => model, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
         @Html.EditorFor(model => model, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model, "", new { @class = "text-danger" })
+        @Html.ValidationMessageFor(model => model.arriver, "", new { @class = "text-danger" })
     </div>
 </div>
 
@@ -21,4 +21,4 @@
         <input type="submit" value="filtre" class="btn btn-default" />
     </div>
 </div>
-    </div>*@
+    </div>

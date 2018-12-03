@@ -23,17 +23,16 @@ namespace Projet_Covoiturage.Controllers
         {
             this.service = serviceTrajet;
         }
-        //public ActionResult Indexfiltre(String depart, String arriver)
-        //{
-        //    return View(service.Filtre(depart, arriver));
-        //}
+       public ActionResult Indexfiltre(String depart, String arriver)
+       {
+           return View(service.GetTrajetsFor(depart, arriver));
+       }
 
         public ActionResult Index()
         {
-            // List<Trajet> trajet = service.GetAllTrajet().ToList();
-            List<Trajet> trajet = new List<Trajet>();
-            trajet.Add(new Trajet { VilleDepart = "tamere", VilleDestination = "ton autre mere", DateDepart = DateTime.Now, HeureArrivee = DateTime.Now.AddHours(24)});
-            return View(trajet);
+
+
+            return View(service.GetAllTrajet());
         }
 
         // GET: Trajets/Details/5
