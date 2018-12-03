@@ -1,0 +1,66 @@
+﻿@model Projet_Covoiturage.Models.Appreciation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Appreciation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Commentaire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Commentaire)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ponctualite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ponctualite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Securite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Securite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fiabilite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fiabilite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Confort)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Confort)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Courtoisie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Courtoisie)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

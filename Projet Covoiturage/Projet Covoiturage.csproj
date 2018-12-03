@@ -224,6 +224,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AppreciationsController.cs" />
     <Compile Include="Controllers\ChauffeursController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -382,6 +383,11 @@
     <Content Include="Views\Chauffeurs\Details.cshtml" />
     <Content Include="Views\Chauffeurs\Edit.cshtml" />
     <Content Include="Views\Chauffeurs\Index.cshtml" />
+    <Content Include="Views\Appreciations\Create.cshtml" />
+    <Content Include="Views\Appreciations\Delete.cshtml" />
+    <Content Include="Views\Appreciations\Details.cshtml" />
+    <Content Include="Views\Appreciations\Edit.cshtml" />
+    <Content Include="Views\Appreciations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
