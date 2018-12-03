@@ -10,6 +10,7 @@ namespace Projet_Covoiturage.Models
         public string Id { get; set; }
         public string VilleDepart { get; set; }
         public string VilleDestination { get; set; }
+        public int Distance { get; set; }
         public DateTime DateDepart { get; set; }
         public DateTime HeureArrivee { get; set; }
         public virtual List<Reservation>  Reservations {get; set;}

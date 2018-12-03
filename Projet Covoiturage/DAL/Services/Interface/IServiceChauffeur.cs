@@ -10,13 +10,13 @@ namespace Projet_Covoiturage.DAL.Services.Interface
     public interface IServiceChauffeur
     {
         Chauffeur GetChauffeurById(string chauffeurId);
-        IEnumerable<Trajet> GetTrajetsFor(int chauffeurId);
-        double GetTotalKmFor(int chauffeurId);
-        double GetPonctualiteAVGFor(int chauffeurId);
-        double GetSecuriteAVGFor(int chauffeurId);
-        double GetConfortAVGFor(int chauffeurId);
-        double GetCourtoisieAVGFor(int chauffeurId);
-        double GetFiabiliteAVGFor(int chauffeurId);
-        Vehicule GetVehiculeFor(int chauffeurId);
+        IEnumerable<Trajet> GetTrajetsFor(string chauffeurId);
+        double GetTotalKmFor(string chauffeurId);
+        double GetPonctualiteAVGFor(string chauffeurId);
+        double GetSecuriteAVGFor(string chauffeurId);
+        double GetConfortAVGFor(string chauffeurId);
+        double GetCourtoisieAVGFor(string chauffeurId);
+        double GetFiabiliteAVGFor(string chauffeurId);
+        Vehicule GetVehiculeFor(string chauffeurId);
     }
 }

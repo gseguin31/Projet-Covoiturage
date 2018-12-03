@@ -10,9 +10,25 @@ namespace Projet_Covoiturage.DAL.Services
 {
     public class ServiceChauffeur : IServiceChauffeur
     {
-       private IUnitOfWork uow;
+        private IUnitOfWork uow;
 
-       public ServiceChauffeur(IUnitOfWork uw)
+        private IQueryable TheUltimateBadassQuery(string chauffeurId)
+        {
+            var query = uow.AppreciationRepository.dbSet   // your starting point - table in the "from" statement
+            .Join(uow.TrajetRepository.dbSet,              // the source table of the inner join
+            x => x.Trajet.Id,                              // Select the primary key (the first part of the "on" clause in an sql "join" statement)
+            y => y.Id,                                     // Select the foreign key (the second part of the "on" clause)
+            (x, y) => new { Appreciation = x, Trajet = y })
+            .Join(uow.ChauffeurRepository.dbSet,
+            x => x.Trajet.Chauffeur.Id,
+            y => y.Id,
+            (x, y) => new { Trajet = x, Chauffeur = y })
+            .Where(AppreciationChauffeur => AppreciationChauffeur.Chauffeur.Id.Equals(chauffeurId));
+
+            return query;
+        }
+
+        public ServiceChauffeur(IUnitOfWork uw)
         {
             uow = uw;
         }
@@ -22,50 +38,81 @@ namespace Projet_Covoiturage.DAL.Services
             return uow.ChauffeurRepository.GetByID(chauffeurId);
         }
 
-        public double GetConfortAVGFor(int chauffeurId)
+        public double GetConfortAVGFor(string chauffeurId)
         {
-            //retourner fausse valeur pour le moment
-            return 3.45;
+            var query = uow.AppreciationRepository.dbSet
+            .Join(GetTrajetsFor(chauffeurId),
+            x => x.Trajet.Id,
+            y => y.Id,
+            (x, y) => new { Appreciation = x, Trajet = y }).
+            Average(AppreciationChauffeur => AppreciationChauffeur.Appreciation.Confort);
+
+            return query;//
         }
 
-        public double GetCourtoisieAVGFor(int chauffeurId)
+        public double GetCourtoisieAVGFor(string chauffeurId)
         {
-            //retourner fausse valeur pour le moment
-            return 5;
+
+            var query = uow.AppreciationRepository.dbSet
+            .Join(GetTrajetsFor(chauffeurId),
+            x => x.Trajet.Id,
+            y => y.Id,
+            (x, y) => new { Appreciation = x, Trajet = y }).
+            Average(AppreciationChauffeur => AppreciationChauffeur.Appreciation.Courtoisie);
+
+            return query;
         }
 
-        public double GetFiabiliteAVGFor(int chauffeurId)
+        public double GetFiabiliteAVGFor(string chauffeurId)
         {
-            //retourner fausse valeur pour le moment
-            return 4.45;
+            var query = uow.AppreciationRepository.dbSet
+            .Join(GetTrajetsFor(chauffeurId),
+            x => x.Trajet.Id,
+            y => y.Id,
+            (x, y) => new { Appreciation = x, Trajet = y }).
+            Average(AppreciationChauffeur => AppreciationChauffeur.Appreciation.Fiabilite);
+
+            return query;
         }
 
-        public double GetPonctualiteAVGFor(int chauffeurId)
+        public double GetPonctualiteAVGFor(string chauffeurId)
         {
-            //retourner fausse valeur pour le moment
-            return 2.45;
+            var query = uow.AppreciationRepository.dbSet
+            .Join(GetTrajetsFor(chauffeurId),
+            x => x.Trajet.Id,
+            y => y.Id,
+            (x, y) => new { Appreciation = x, Trajet = y }).
+            Average(AppreciationChauffeur => AppreciationChauffeur.Appreciation.Ponctualite);
+
+            return query;//
         }
 
-        public double GetSecuriteAVGFor(int chauffeurId)
+        public double GetSecuriteAVGFor(string chauffeurId)
         {
-            //retourner fausse valeur pour le moment
-            return 3.8;
+            var query = uow.AppreciationRepository.dbSet
+            .Join(GetTrajetsFor(chauffeurId),
+            x => x.Trajet.Id,
+            y => y.Id,
+            (x, y) => new { Appreciation = x, Trajet = y }).
+            Average(AppreciationChauffeur => AppreciationChauffeur.Appreciation.Securite);
+
+            return query;
         }
 
-        public double GetTotalKmFor(int chauffeurId)
+        public double GetTotalKmFor(string chauffeurId)
         {
-            //retourner fausse valeur pour le moment
+            GetTrajetsFor(chauffeurId).Average(x => x.Distance);
             return 12043.45;
         }
 
-        public IEnumerable<Trajet> GetTrajetsFor(int chauffeurId)
+        public IEnumerable<Trajet> GetTrajetsFor(string chauffeurId)
         {
-            throw new NotImplementedException();
+            return uow.TrajetRepository.Get().Where(x => x.Chauffeur.Id == chauffeurId).ToList();
         }
 
-        public Vehicule GetVehiculeFor(int chauffeurId)
+        public Vehicule GetVehiculeFor(string chauffeurId)
         {
-            throw new NotImplementedException();
+            return uow.ChauffeurRepository.Get().Where(x => x.Id == chauffeurId).First().Vehicule;
         }
     }
 }

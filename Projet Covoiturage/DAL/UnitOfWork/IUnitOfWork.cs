@@ -13,6 +13,7 @@ namespace Projet_Covoiturage.DAL.UnitOfWork
         GenericRepository<Chauffeur> ChauffeurRepository { get; }
         GenericRepository<Client> ClientRepository { get; }
         GenericRepository<Trajet> TrajetRepository { get; }
+        GenericRepository<Appreciation> AppreciationRepository { get; }
         void Save();
         //void Dispose();
         //void Dispose(bool disposing);
