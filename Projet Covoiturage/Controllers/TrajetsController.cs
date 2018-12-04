@@ -125,6 +125,20 @@ namespace Projet_Covoiturage.Controllers
         //    db.SaveChanges();
         //    return RedirectToAction("Index");
         //}
+        [Authorize(Roles = "Client")]
+        public void Reserver(string idTrajet)
+        {
+            Trajet trajetReserver = serviceTrajet.GetTrajetById(idTrajet);
+
+            ApplicationUser user = this.applicationManager.FindById(User.Identity.GetUserId());
+
+            Reservation reservation = new Reservation();
+
+            reservation.ClientId = user.Id;
+            reservation.TrajetId = trajetReserver.Id;
+
+            serviceReservation.CreateReservation(reservation);
+        }
 
         protected override void Dispose(bool disposing)
         {

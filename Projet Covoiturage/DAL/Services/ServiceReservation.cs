@@ -47,5 +47,9 @@ namespace Projet_Covoiturage.DAL.Services
         {
             uow.ReservationRepository.Update(reservation);
         }
+        public void AnnulerReservation(Reservation reservation)
+        {
+            uow.ReservationRepository.dbSet.Remove(reservation);
+        }
     }
 }
