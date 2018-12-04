@@ -17,6 +17,16 @@ namespace Projet_Covoiturage.DAL.Services
             uow = uw;
         }
 
+        public void CreateChauffeur(Chauffeur chauffeur)
+        {
+            uow.ChauffeurRepository.Insert(chauffeur);
+        }
+
+        public void DeleteChauffeur(string id)
+        {
+            uow.ChauffeurRepository.Delete(id);
+        }
+
         public Chauffeur GetChauffeur(string chauffeurId)
         {
             return uow.ChauffeurRepository.GetByID(chauffeurId);
@@ -97,6 +107,11 @@ namespace Projet_Covoiturage.DAL.Services
         public Vehicule GetVehiculeFor(string chauffeurId)
         {
             return uow.ChauffeurRepository.Get().Where(x => x.Id == chauffeurId).First().Vehicule;
+        }
+
+        public void UpdateChauffeur(Chauffeur chauffeur)
+        {
+            uow.ChauffeurRepository.Update(chauffeur);
         }
     }
 }
