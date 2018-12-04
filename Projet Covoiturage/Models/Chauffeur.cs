@@ -5,8 +5,9 @@ using System.Web;
 
 namespace Projet_Covoiturage.Models
 {
-    public class Chauffeur : ApplicationUser
+    public class Chauffeur 
     {
+        public string Id { get; set; }
         public DateTime DatePermis { get; set; }
         public DateTime DateEmbauche { get; set; }
         public virtual Vehicule Vehicule { get; set; }

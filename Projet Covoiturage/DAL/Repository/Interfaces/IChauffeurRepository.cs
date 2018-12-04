@@ -9,7 +9,7 @@ namespace Projet_Covoiturage.DAL.Repository
 {
     public interface IChauffeurRepository : IDisposable
     {
-        Chauffeur GetChauffeurById(string chauffeurId);
+        //Chauffeur GetChauffeurById(string chauffeurId);
         void Save();
     }
 }

@@ -15,10 +15,10 @@ namespace Projet_Covoiturage.DAL.Repository
             this.context = context;
         }
 
-        public Chauffeur GetChauffeurById(string chauffeurId)
-        {
-            return (Chauffeur)context.Users.FirstOrDefault(x => x.Id == chauffeurId);
-        }
+        //public Chauffeur GetChauffeurById(string chauffeurId)
+        //{
+        //    return (Chauffeur)context.Users.FirstOrDefault(x => x.Id == chauffeurId);
+        //}
 
         public void Save()
         {

@@ -66,7 +66,7 @@ namespace Projet_Covoiturage.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nom,Prenom,Courriel,Telephone,Ville,Age,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,DatePermis,DateEmbauche")] Chauffeur chauffeur)
+        public ActionResult Create([Bind(Include = "Id,Nom,Prenom,Courriel,Telephone,Ville,Age,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,DatePermis,DateEmbauche")] ApplicationUser chauffeur)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace Projet_Covoiturage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Chauffeur chauffeur = (Chauffeur)db.Users.Find(id);
+            ApplicationUser chauffeur = db.Users.Find(id);
             if (chauffeur == null)
             {
                 return HttpNotFound();
@@ -116,7 +116,7 @@ namespace Projet_Covoiturage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Chauffeur chauffeur = (Chauffeur)db.Users.Find(id);
+            ApplicationUser chauffeur = db.Users.Find(id);
             if (chauffeur == null)
             {
                 return HttpNotFound();
@@ -129,7 +129,7 @@ namespace Projet_Covoiturage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Chauffeur chauffeur = (Chauffeur)db.Users.Find(id);
+            ApplicationUser chauffeur = db.Users.Find(id);
             db.Users.Remove(chauffeur);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -23,7 +23,7 @@ namespace Projet_Covoiturage.Models
         public string Telephone { get; set; }
         public string Ville { get; set; }
         public int Age { get; set; }
-        //public virtual List<Reservation> Reservations { get; set; }
+        public virtual Chauffeur Chauffeur { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

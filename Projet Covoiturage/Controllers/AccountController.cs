@@ -207,7 +207,7 @@ namespace Projet_Covoiturage.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new Chauffeur
+                var user = new ApplicationUser
                 {
                     UserName = model.Email,
                     Email = model.Email,
@@ -216,9 +216,9 @@ namespace Projet_Covoiturage.Controllers
                     Telephone = model.Telephone,
                     Prenom = model.Prenom,
                     Ville = model.ville,
-                    DateEmbauche = DateTime.Now,
-                    DatePermis = model.DatePermis,
-                    Vehicule = new Vehicule { Id = Guid.NewGuid().ToString(), Modele = model.Modele, DateMiseEnRoute = model.DateMiseEnRoute, NombrePlace = model.NombrePlace }
+                    //DateEmbauche = DateTime.Now,
+                    //DatePermis = model.DatePermis,
+                    //Vehicule = new Vehicule { Id = Guid.NewGuid().ToString(), Modele = model.Modele, DateMiseEnRoute = model.DateMiseEnRoute, NombrePlace = model.NombrePlace }
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
