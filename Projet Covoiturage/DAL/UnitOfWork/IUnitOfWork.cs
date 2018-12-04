@@ -15,6 +15,7 @@ namespace Projet_Covoiturage.DAL.UnitOfWork
         GenericRepository<Trajet> TrajetRepository { get; }
         GenericRepository<Appreciation> AppreciationRepository { get; }
         GenericRepository<Reservation> ReservationRepository { get; }
+        GenericRepository<Vehicule> VehiculeRepository { get; }
         void Save();
         //void Dispose();
         //void Dispose(bool disposing);

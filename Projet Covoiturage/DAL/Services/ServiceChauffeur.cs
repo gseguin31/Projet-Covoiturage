@@ -22,6 +22,11 @@ namespace Projet_Covoiturage.DAL.Services
             uow.ChauffeurRepository.Insert(chauffeur);
         }
 
+        public void CreateVehicule(Vehicule vehicule)
+        {
+            uow.VehiculeRepository.Insert(vehicule);
+        }
+
         public void DeleteChauffeur(string id)
         {
             uow.ChauffeurRepository.Delete(id);
