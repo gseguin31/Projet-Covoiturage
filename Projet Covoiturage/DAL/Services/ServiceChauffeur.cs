@@ -12,22 +12,6 @@ namespace Projet_Covoiturage.DAL.Services
     {
         private IUnitOfWork uow;
 
-        private IQueryable TheUltimateBadassQuery(string chauffeurId)
-        {
-            var query = uow.AppreciationRepository.dbSet   // your starting point - table in the "from" statement
-            .Join(uow.TrajetRepository.dbSet,              // the source table of the inner join
-            x => x.Trajet.Id,                              // Select the primary key (the first part of the "on" clause in an sql "join" statement)
-            y => y.Id,                                     // Select the foreign key (the second part of the "on" clause)
-            (x, y) => new { Appreciation = x, Trajet = y })
-            .Join(uow.ChauffeurRepository.dbSet,
-            x => x.Trajet.Chauffeur.Id,
-            y => y.Id,
-            (x, y) => new { Trajet = x, Chauffeur = y })
-            .Where(AppreciationChauffeur => AppreciationChauffeur.Chauffeur.Id.Equals(chauffeurId));
-
-            return query;
-        }
-
         public ServiceChauffeur(IUnitOfWork uw)
         {
             uow = uw;
@@ -47,7 +31,7 @@ namespace Projet_Covoiturage.DAL.Services
             (x, y) => new { Appreciation = x, Trajet = y }).
             Average(AppreciationChauffeur => AppreciationChauffeur.Appreciation.Confort);
 
-            return query;//
+            return query;
         }
 
         public double GetCourtoisieAVGFor(string chauffeurId)

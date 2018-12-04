@@ -236,9 +236,11 @@
     <Compile Include="DAL\Repository\Interfaces\IClientRepository.cs" />
     <Compile Include="DAL\Repository\Interfaces\ITrajetRepository.cs" />
     <Compile Include="DAL\Repository\TrajetRepository.cs" />
+    <Compile Include="DAL\Services\Interface\IServiceAppreciation.cs" />
     <Compile Include="DAL\Services\Interface\IServiceChauffeur.cs" />
     <Compile Include="DAL\Services\Interface\IServiceClient.cs" />
     <Compile Include="DAL\Services\Interface\IServiceTrajet.cs" />
+    <Compile Include="DAL\Services\ServiceAppreciation.cs" />
     <Compile Include="DAL\Services\ServiceChauffeur.cs" />
     <Compile Include="DAL\Services\ServiceClient.cs" />
     <Compile Include="DAL\Services\ServiceTrajet.cs" />
