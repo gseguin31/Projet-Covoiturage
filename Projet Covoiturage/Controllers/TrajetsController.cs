@@ -9,31 +9,41 @@ using System.Web.Mvc;
 using Projet_Covoiturage.DAL.Services;
 using Projet_Covoiturage.DAL.Services.Interface;
 using Projet_Covoiturage.Models;
+using Projet_Covoiturage.Models.ViewModel;
 
 namespace Projet_Covoiturage.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class TrajetsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private IServiceTrajet service;
-        // GET: Trajets
 
         public TrajetsController(IServiceTrajet serviceTrajet)
         {
             this.service = serviceTrajet;
         }
-        //public ActionResult Indexfiltre(String depart, String arriver)
-        //{
-        //    return View(service.Filtre(depart, arriver));
-        //}
-
-        public ActionResult Index()
+        // GET: Trajets
+        [Route]
+        public ActionResult Index([Bind(Include = "Depard,Arriver")] FilteTrajet filtre)
         {
-            // List<Trajet> trajet = service.GetAllTrajet().ToList();
-           
-            return View(service.GetAllTrajet());
+            return View();
         }
+        public ActionResult Indexfiltre(FilteTrajet filtreTrajet)
+        {
+            if(filtreTrajet==null)
+            {
+                View(service.GetAllTrajet());
+            }
+
+            return View(service.GetTrajetsFor(filtreTrajet.Depard, filtreTrajet.Arriver));
+        }
+        //public ActionResult Index()
+        //{
+        //    // List<Trajet> trajet = service.GetAllTrajet().ToList();
+           
+        //    return View(service.GetAllTrajet());
+        //}
 
         // GET: Trajets/Details/5
     

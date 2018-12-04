@@ -381,7 +381,6 @@
     <Content Include="Views\Trajets\Details.cshtml" />
     <Content Include="Views\Trajets\Edit.cshtml" />
     <Content Include="Views\Trajets\Index.cshtml" />
-    <Content Include="Views\Trajets\IndexFiltre.cshtml" />
     <Content Include="Views\Chauffeurs\Create.cshtml" />
     <Content Include="Views\Chauffeurs\Delete.cshtml" />
     <Content Include="Views\Chauffeurs\Details.cshtml" />
@@ -391,6 +390,7 @@
     <Content Include="Views\Appreciations\Details.cshtml" />
     <Content Include="Views\Appreciations\Edit.cshtml" />
     <Content Include="Views\Appreciations\Index.cshtml" />
+    <Content Include="Views\Trajets\Indexfiltre.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

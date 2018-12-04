@@ -1,50 +1,28 @@
-﻿@model IEnumerable<Projet_Covoiturage.Models.Trajet>
+﻿@model Projet_Covoiturage.Models.ViewModel.FilteTrajet
 
 @{
     ViewBag.Title = "vos trajet possible";
 }
-
-<h2>Index</h2>
-
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.VilleDepart)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VilleDestination)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateDepart)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HeureArrivee)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.VilleDepart)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VilleDestination)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateDepart)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HeureArrivee)
-            </td>
-            <td>
-
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Reserver", "Reserver", new { id = item.Id }) |
-            </td>
-        </tr>
-    }
-
-</table>
+<div class="form-group">
+    @Html.LabelFor(model => model.Arriver, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Arriver, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Arriver, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.Depard, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Depard, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Depard, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Index" class="btn btn-default" />
+    </div>
+</div>
+<div>
+    @Html.Partial("Indexfiltre", Model)
+</div>
+  
