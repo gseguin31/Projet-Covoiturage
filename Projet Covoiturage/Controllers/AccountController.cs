@@ -95,9 +95,12 @@ namespace Projet_Covoiturage.Controllers
                         return RedirectToAction("Index", "Trajets");
                     }
                     else
+                    {
                         // un chauffeur se login rediriger a ses details
-                        return RedirectToAction("Details", "Chauffeurs", user);
-
+                        Chauffeur chauffeur = _serviceChauffeur.GetChauffeur(user.Id);
+                        return RedirectToAction("Details", "Chauffeurs", chauffeur);
+                    }
+                        
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

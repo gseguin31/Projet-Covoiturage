@@ -39,10 +39,10 @@ namespace Projet_Covoiturage.Controllers
         {
             if(filtreTrajet==null)
             {
-                View(service.GetAllTrajet());
+                View(serviceTrajet.GetAllTrajet());
             }
 
-            return View(service.GetTrajetsFor(filtreTrajet.Depard, filtreTrajet.Arriver));
+            return View(serviceTrajet.GetTrajetsFor(filtreTrajet.Depard, filtreTrajet.Arriver));
         }
         //public ActionResult Index()
         //{
