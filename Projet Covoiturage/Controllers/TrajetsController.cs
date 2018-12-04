@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Projet_Covoiturage.DAL.Services;
 using Projet_Covoiturage.DAL.Services.Interface;
 using Projet_Covoiturage.Models;
@@ -16,12 +17,16 @@ namespace Projet_Covoiturage.Controllers
     public class TrajetsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        private IServiceTrajet service;
+        private IServiceTrajet serviceTrajet;
+        private IServiceReservation serviceReservation;
+        private ApplicationUserManager applicationManager;
         // GET: Trajets
 
-        public TrajetsController(IServiceTrajet serviceTrajet)
+        private TrajetsController(IServiceTrajet serviceTrajet, IServiceReservation serviceReservation, ApplicationUserManager appManager)
         {
-            this.service = serviceTrajet;
+            this.applicationManager = appManager;
+            this.serviceTrajet = serviceTrajet;
+            this.serviceReservation = serviceReservation;
         }
         //public ActionResult Indexfiltre(String depart, String arriver)
         //{
@@ -31,19 +36,19 @@ namespace Projet_Covoiturage.Controllers
         public ActionResult Index()
         {
             // List<Trajet> trajet = service.GetAllTrajet().ToList();
-           
-            return View(service.GetAllTrajet());
+
+            return View(serviceTrajet.GetAllTrajet());
         }
 
         // GET: Trajets/Details/5
-    
+
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trajet trajet = service.GetTrajetById(id);
+            Trajet trajet = serviceTrajet.GetTrajetById(id);
             if (trajet == null)
             {
                 return HttpNotFound();
@@ -54,7 +59,7 @@ namespace Projet_Covoiturage.Controllers
         // POST: Trajets/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles ="Chaufeur")]
+        [Authorize(Roles = "Chaufeur")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,VilleDepart,VilleDestination,DateDepart,HeureArrivee")] Trajet trajet)

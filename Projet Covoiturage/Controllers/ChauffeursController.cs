@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Projet_Covoiturage.DAL.Services.Interface;
+using Projet_Covoiturage.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -6,8 +8,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Projet_Covoiturage.DAL.Services.Interface;
-using Projet_Covoiturage.Models;
 
 namespace Projet_Covoiturage.Controllers
 {
@@ -39,15 +39,7 @@ namespace Projet_Covoiturage.Controllers
                 // a mettre lorsque le service acceptera
                 Trajets = serviceChauffeur.GetTrajetsFor(chauffeur.Id).ToList(),
                 Vehicule = serviceChauffeur.GetVehiculeFor(chauffeur.Id)
-
-                //// a enlever lorsque le service acceptera
-                //Trajets = new List<Trajet> { new Trajet { Id = "grosN", Appreciations = new List<Appreciation>(),
-                //    Chauffeur = chauffeur, DateDepart = DateTime.Now, HeureArrivee = DateTime.Now.AddHours(2),
-                //    Reservations = new List<Reservation>(), VilleDepart = "tamere", VilleDestination = "ton autre mere"},
-                //new Trajet { Id = "grosN", Appreciations = new List<Appreciation>(),
-                //    Chauffeur = chauffeur, DateDepart = DateTime.Now, HeureArrivee = DateTime.Now.AddHours(2),
-                //    Reservations = new List<Reservation>(), VilleDepart = "tasoeur", VilleDestination = "ton autre soeur"}},
-                //Vehicule = new Vehicule { DateMiseEnRoute = DateTime.Now, Id = "char", Modele = "subaru malade", NombrePlace = 3 }
+                
             };
 
             return View(vm);
