@@ -14,6 +14,8 @@ namespace Projet_Covoiturage.DAL.UnitOfWork
         public GenericRepository<Client> clientRepo;
         public GenericRepository<Trajet> trajetRepo;
         public GenericRepository<Appreciation> appreciationRepo;
+        public GenericRepository<Reservation> reservationRepo;
+        public GenericRepository<Vehicule> vehiculeRepo;
 
         public UnitOfWork(ApplicationDbContext cx)
         {
@@ -29,6 +31,18 @@ namespace Projet_Covoiturage.DAL.UnitOfWork
                     chauffeurRepo = new GenericRepository<Chauffeur>(context);
                 }
                 return chauffeurRepo;
+            }
+        }
+
+        public GenericRepository<Vehicule> VehiculeRepository
+        {
+            get
+            {
+                if (vehiculeRepo == null)
+                {
+                    vehiculeRepo = new GenericRepository<Vehicule>(context);
+                }
+                return vehiculeRepo;
             }
         }
 
@@ -65,6 +79,18 @@ namespace Projet_Covoiturage.DAL.UnitOfWork
                     trajetRepo = new GenericRepository<Trajet>(context);
                 }
                 return trajetRepo;
+            }
+        }
+
+        public GenericRepository<Reservation> ReservationRepository
+        {
+            get
+            {
+                if (reservationRepo == null)
+                {
+                    reservationRepo = new GenericRepository<Reservation>(context);
+                }
+                return reservationRepo;
             }
         }
 

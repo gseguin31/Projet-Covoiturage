@@ -17,7 +17,22 @@ namespace Projet_Covoiturage.DAL.Services
             uow = uw;
         }
 
-        public Chauffeur GetChauffeurById(string chauffeurId)
+        public void CreateChauffeur(Chauffeur chauffeur)
+        {
+            uow.ChauffeurRepository.Insert(chauffeur);
+        }
+
+        public void CreateVehicule(Vehicule vehicule)
+        {
+            uow.VehiculeRepository.Insert(vehicule);
+        }
+
+        public void DeleteChauffeur(string id)
+        {
+            uow.ChauffeurRepository.Delete(id);
+        }
+
+        public Chauffeur GetChauffeur(string chauffeurId)
         {
             return uow.ChauffeurRepository.GetByID(chauffeurId);
         }
@@ -28,10 +43,11 @@ namespace Projet_Covoiturage.DAL.Services
             .Join(GetTrajetsFor(chauffeurId),
             x => x.Trajet.Id,
             y => y.Id,
-            (x, y) => new { Appreciation = x, Trajet = y }).
-            Average(AppreciationChauffeur => AppreciationChauffeur.Appreciation.Confort);
+            (x, y) => new { Appreciation = x, Trajet = y });
 
-            return query;
+            return query.Count() > 0 ? query.Average(AppreciationChauffeur => 
+            AppreciationChauffeur.Appreciation.Confort) : 0;
+
         }
 
         public double GetCourtoisieAVGFor(string chauffeurId)
@@ -41,10 +57,10 @@ namespace Projet_Covoiturage.DAL.Services
             .Join(GetTrajetsFor(chauffeurId),
             x => x.Trajet.Id,
             y => y.Id,
-            (x, y) => new { Appreciation = x, Trajet = y }).
-            Average(AppreciationChauffeur => AppreciationChauffeur.Appreciation.Courtoisie);
+            (x, y) => new { Appreciation = x, Trajet = y });
 
-            return query;
+            return query.Count() > 0 ? query.Average(AppreciationChauffeur => 
+            AppreciationChauffeur.Appreciation.Courtoisie) : 0;
         }
 
         public double GetFiabiliteAVGFor(string chauffeurId)
@@ -53,10 +69,10 @@ namespace Projet_Covoiturage.DAL.Services
             .Join(GetTrajetsFor(chauffeurId),
             x => x.Trajet.Id,
             y => y.Id,
-            (x, y) => new { Appreciation = x, Trajet = y }).
-            Average(AppreciationChauffeur => AppreciationChauffeur.Appreciation.Fiabilite);
+            (x, y) => new { Appreciation = x, Trajet = y });
 
-            return query;
+            return query.Count() > 0 ? query.Average(AppreciationChauffeur => 
+            AppreciationChauffeur.Appreciation.Fiabilite) : 0;
         }
 
         public double GetPonctualiteAVGFor(string chauffeurId)
@@ -65,10 +81,10 @@ namespace Projet_Covoiturage.DAL.Services
             .Join(GetTrajetsFor(chauffeurId),
             x => x.Trajet.Id,
             y => y.Id,
-            (x, y) => new { Appreciation = x, Trajet = y }).
-            Average(AppreciationChauffeur => AppreciationChauffeur.Appreciation.Ponctualite);
+            (x, y) => new { Appreciation = x, Trajet = y });
 
-            return query;//
+            return query.Count() > 0 ? query.Average(AppreciationChauffeur =>
+            AppreciationChauffeur.Appreciation.Ponctualite) : 0;
         }
 
         public double GetSecuriteAVGFor(string chauffeurId)
@@ -77,10 +93,10 @@ namespace Projet_Covoiturage.DAL.Services
             .Join(GetTrajetsFor(chauffeurId),
             x => x.Trajet.Id,
             y => y.Id,
-            (x, y) => new { Appreciation = x, Trajet = y }).
-            Average(AppreciationChauffeur => AppreciationChauffeur.Appreciation.Securite);
+            (x, y) => new { Appreciation = x, Trajet = y });
 
-            return query;
+            return query.Count() > 0 ? query.Average(AppreciationChauffeur =>
+                        AppreciationChauffeur.Appreciation.Securite) : 0;
         }
 
         public double GetTotalKmFor(string chauffeurId)
@@ -97,6 +113,11 @@ namespace Projet_Covoiturage.DAL.Services
         public Vehicule GetVehiculeFor(string chauffeurId)
         {
             return uow.ChauffeurRepository.Get().Where(x => x.Id == chauffeurId).First().Vehicule;
+        }
+
+        public void UpdateChauffeur(Chauffeur chauffeur)
+        {
+            uow.ChauffeurRepository.Update(chauffeur);
         }
     }
 }
