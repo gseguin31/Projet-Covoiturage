@@ -4,6 +4,7 @@ using Microsoft.Owin;
 using Owin;
 using Projet_Covoiturage.Models;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 [assembly: OwinStartupAttribute(typeof(Projet_Covoiturage.Startup))]
@@ -72,7 +73,18 @@ namespace Projet_Covoiturage
                 var result1 = UserManager.AddToRole(user2.Id, "Client");
 
             }
-            context.Trajets.Add(new Trajet { VilleDepart = "tamere", VilleDestination = "ton autre mere", DateDepart = DateTime.Now, HeureArrivee = DateTime.Now.AddHours(24) });
+
+            List<Trajet> list = new List<Trajet>();
+            Trajet voyage = new Trajet {Id="0", VilleDepart = "tamere", VilleDestination = "ton autre mere", DateDepart = DateTime.Now, HeureArrivee = DateTime.Now.AddHours(24) };
+            list.Add(voyage);
+            Chauffeur bob = new Chauffeur {DateEmbauche= DateTime.Now.AddDays(-10),DatePermis= DateTime.Now.AddDays(-10),Id="0",Trajets=list };
+            voyage.Chauffeur = bob;
+            ApplicationUser bobQuiChauffe= UserManager.Find("chauffeur@chauffeur.chauffeur", "Password1!");
+            bobQuiChauffe.Chauffeur = bob;
+            UserManager.Update(bobQuiChauffe);
+            context.Chauffeurs.Add(bob);
+            voyage.Chauffeur = bob;
+            context.Trajets.Add(voyage);
             context.SaveChanges();
         }
     }
