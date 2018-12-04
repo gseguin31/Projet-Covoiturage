@@ -14,7 +14,7 @@ namespace Projet_Covoiturage.DAL.Services.Interface
         IEnumerable<Appreciation> GetAllAppreciations();
         void CreateAppreciation(Appreciation appreciation);
         void DeleteAppreciation(string id);
-        void UpdateAppreciation(Appreciation trajet);
+        void UpdateAppreciation(Appreciation appreciation);
 
 
 
