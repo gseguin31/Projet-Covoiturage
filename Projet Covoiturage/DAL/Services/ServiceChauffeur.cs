@@ -38,10 +38,11 @@ namespace Projet_Covoiturage.DAL.Services
             .Join(GetTrajetsFor(chauffeurId),
             x => x.Trajet.Id,
             y => y.Id,
-            (x, y) => new { Appreciation = x, Trajet = y }).
-            Average(AppreciationChauffeur => AppreciationChauffeur.Appreciation.Confort);
+            (x, y) => new { Appreciation = x, Trajet = y });
 
-            return query;
+            return query.Count() > 0 ? query.Average(AppreciationChauffeur => 
+            AppreciationChauffeur.Appreciation.Confort) : 0;
+
         }
 
         public double GetCourtoisieAVGFor(string chauffeurId)
@@ -51,10 +52,10 @@ namespace Projet_Covoiturage.DAL.Services
             .Join(GetTrajetsFor(chauffeurId),
             x => x.Trajet.Id,
             y => y.Id,
-            (x, y) => new { Appreciation = x, Trajet = y }).
-            Average(AppreciationChauffeur => AppreciationChauffeur.Appreciation.Courtoisie);
+            (x, y) => new { Appreciation = x, Trajet = y });
 
-            return query;
+            return query.Count() > 0 ? query.Average(AppreciationChauffeur => 
+            AppreciationChauffeur.Appreciation.Courtoisie) : 0;
         }
 
         public double GetFiabiliteAVGFor(string chauffeurId)
@@ -63,10 +64,10 @@ namespace Projet_Covoiturage.DAL.Services
             .Join(GetTrajetsFor(chauffeurId),
             x => x.Trajet.Id,
             y => y.Id,
-            (x, y) => new { Appreciation = x, Trajet = y }).
-            Average(AppreciationChauffeur => AppreciationChauffeur.Appreciation.Fiabilite);
+            (x, y) => new { Appreciation = x, Trajet = y });
 
-            return query;
+            return query.Count() > 0 ? query.Average(AppreciationChauffeur => 
+            AppreciationChauffeur.Appreciation.Fiabilite) : 0;
         }
 
         public double GetPonctualiteAVGFor(string chauffeurId)
@@ -75,10 +76,10 @@ namespace Projet_Covoiturage.DAL.Services
             .Join(GetTrajetsFor(chauffeurId),
             x => x.Trajet.Id,
             y => y.Id,
-            (x, y) => new { Appreciation = x, Trajet = y }).
-            Average(AppreciationChauffeur => AppreciationChauffeur.Appreciation.Ponctualite);
+            (x, y) => new { Appreciation = x, Trajet = y });
 
-            return query;//
+            return query.Count() > 0 ? query.Average(AppreciationChauffeur =>
+            AppreciationChauffeur.Appreciation.Ponctualite) : 0;
         }
 
         public double GetSecuriteAVGFor(string chauffeurId)
@@ -87,10 +88,10 @@ namespace Projet_Covoiturage.DAL.Services
             .Join(GetTrajetsFor(chauffeurId),
             x => x.Trajet.Id,
             y => y.Id,
-            (x, y) => new { Appreciation = x, Trajet = y }).
-            Average(AppreciationChauffeur => AppreciationChauffeur.Appreciation.Securite);
+            (x, y) => new { Appreciation = x, Trajet = y });
 
-            return query;
+            return query.Count() > 0 ? query.Average(AppreciationChauffeur =>
+                        AppreciationChauffeur.Appreciation.Securite) : 0;
         }
 
         public double GetTotalKmFor(string chauffeurId)
