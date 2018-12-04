@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Projet_Covoiturage.DAL.Services.Interface
 {
-    interface IServiceReservation
+    public interface IServiceReservation
     {
         Reservation GetReservation(string reservationId);
         IEnumerable<Reservation> GetAllReservations();

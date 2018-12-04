@@ -9,7 +9,7 @@ namespace Projet_Covoiturage.DAL.Repository
 {
     interface IClientRepository : IDisposable
     {
-        Client GetClientById(string clientId);
+        ApplicationUser GetClientById(string clientId);
         void Save();
     }
 }

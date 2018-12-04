@@ -16,9 +16,9 @@ namespace Projet_Covoiturage.DAL.Repository
             this.context = context;
         }
 
-        public Client GetClientById(string clientId)
+        public ApplicationUser GetClientById(string clientId)
         {
-            return (Client)context.Users.FirstOrDefault(x => x.Id == clientId);
+            return context.Users.FirstOrDefault(x => x.Id == clientId);
         }
 
         public void Save()

@@ -33,10 +33,16 @@ namespace Projet_Covoiturage
             container.RegisterType<IServiceChauffeur, ServiceChauffeur>();
             container.RegisterType<IServiceClient, ServiceClient>();
             container.RegisterType<IServiceTrajet, ServiceTrajet>();
-            container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>();
-            container.RegisterType<UserManager<ApplicationUser>>();
-            container.RegisterType<IdentityDbContext<ApplicationUser>, ApplicationDbContext>();
-            container.RegisterType<ApplicationUserManager>();
+            container.RegisterType<IServiceReservation, ServiceReservation>();
+            //container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>();
+            //container.RegisterType<UserManager<ApplicationUser>>();
+            //container.RegisterType<IdentityDbContext<ApplicationUser>, ApplicationDbContext>();
+            //container.RegisterType<ApplicationUserManager>();
+            //container.RegisterType<AccountController>(new InjectionConstructor());
+
+            container.RegisterType<IdentityDbContext<ApplicationUser>, ApplicationDbContext>(new HierarchicalLifetimeManager());
+            container.RegisterType<UserManager<ApplicationUser>>(new HierarchicalLifetimeManager());
+            container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(new HierarchicalLifetimeManager());
             container.RegisterType<AccountController>(new InjectionConstructor());
         }
     }

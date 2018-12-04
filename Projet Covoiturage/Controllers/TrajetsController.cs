@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using Projet_Covoiturage.DAL.Services;
 using Projet_Covoiturage.DAL.Services.Interface;
 using Projet_Covoiturage.Models;
@@ -20,20 +21,22 @@ namespace Projet_Covoiturage.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         private IServiceTrajet serviceTrajet;
         private IServiceReservation serviceReservation;
-        private ApplicationUserManager applicationManager;
+        private IServiceClient serviceClient;
         // GET: Trajets
 
-        private TrajetsController(IServiceTrajet serviceTrajet, IServiceReservation serviceReservation, ApplicationUserManager appManager)
+        public TrajetsController(IServiceTrajet serviceTrajet, IServiceReservation serviceReservation, IServiceClient serviceClient)
         {
-            this.applicationManager = appManager;
+            //User manager n'est pas injectable. il va faloir trouver un autre facon d'avoir le user.
             this.serviceTrajet = serviceTrajet;
             this.serviceReservation = serviceReservation;
+            this.serviceClient = serviceClient;
         }
+        
         // GET: Trajets
         [Route]
         public ActionResult Index([Bind(Include = "Depard,Arriver")] FilteTrajet filtre)
         {
-            return View();
+            return View("Index");
         }
         public ActionResult Indexfiltre(FilteTrajet filtreTrajet)
         {
@@ -142,11 +145,14 @@ namespace Projet_Covoiturage.Controllers
         //    return RedirectToAction("Index");
         //}
         [Authorize(Roles = "Client")]
-        public void Reserver(string idTrajet)
+        public void Reserver(string idTrajet, string userId)
         {
             Trajet trajetReserver = serviceTrajet.GetTrajetById(idTrajet);
 
-            ApplicationUser user = this.applicationManager.FindById(User.Identity.GetUserId());
+            //User manager n'est pas injectable. il va faloir trouver un autre facon d'avoir le user.
+
+           //ApplicationUser user = this.applicationManager.FindById(User.Identity.GetUserId());
+            ApplicationUser user = serviceClient.GetClient(userId);
 
             Reservation reservation = new Reservation();
 
