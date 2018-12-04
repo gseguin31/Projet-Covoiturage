@@ -25,7 +25,7 @@ namespace Projet_Covoiturage
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
-
+            var user = new ApplicationUser();
             // In Startup iam creating first Admin Role and creating a default Admin User    
             if (!roleManager.RoleExists("Chauffeur"))
             {
@@ -36,7 +36,7 @@ namespace Projet_Covoiturage
                 roleManager.Create(role);
                 
 
-                var user = new ApplicationUser();
+                
                 user.UserName = "chauffeur@chauffeur.chauffeur";
                 user.Email = "chauffeur@chauffeur.chauffeur";
 
@@ -77,7 +77,20 @@ namespace Projet_Covoiturage
             List<Trajet> list = new List<Trajet>();
             Trajet voyage = new Trajet {Id="0", VilleDepart = "tamere", VilleDestination = "ton autre mere", DateDepart = DateTime.Now, HeureArrivee = DateTime.Now.AddHours(24) };
             list.Add(voyage);
-            Chauffeur bob = new Chauffeur {DateEmbauche= DateTime.Now.AddDays(-10),DatePermis= DateTime.Now.AddDays(-10),Id="0",Trajets=list };
+            Chauffeur bob = new Chauffeur
+            {
+                Id = user.Id,
+                DateEmbauche = DateTime.Now.AddDays(-10),
+                DatePermis = DateTime.Now.AddDays(-10),
+                Trajets = list,
+                Vehicule = new Vehicule
+                {
+                    Id = "0",
+                    DateMiseEnRoute = DateTime.Now,
+                    Modele = "gros char",
+                    NombrePlace = 3
+                }
+            };
             voyage.Chauffeur = bob;
             ApplicationUser bobQuiChauffe= UserManager.Find("chauffeur@chauffeur.chauffeur", "Password1!");
             bobQuiChauffe.Chauffeur = bob;
