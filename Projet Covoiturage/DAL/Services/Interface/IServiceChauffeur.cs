@@ -10,6 +10,7 @@ namespace Projet_Covoiturage.DAL.Services.Interface
     public interface IServiceChauffeur
     {
         void CreateChauffeur(Chauffeur chauffeur);
+        void CreateVehicule(Vehicule vehicule);
         void DeleteChauffeur(string id);
         void UpdateChauffeur(Chauffeur chauffeur);
         Chauffeur GetChauffeur(string chauffeurId);
