@@ -9,7 +9,7 @@ namespace Projet_Covoiturage.DAL.Services.Interface
 {
     public interface IServiceClient
     {
-        Client GetClientById(string clientId);
+        Client GetClient(string clientId);
 
     }
 }

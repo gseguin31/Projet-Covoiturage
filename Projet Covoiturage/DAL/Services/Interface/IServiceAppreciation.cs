@@ -9,11 +9,9 @@ namespace Projet_Covoiturage.DAL.Services.Interface
 {
     interface IServiceAppreciation
     {
-        IEnumerable<Appreciation> getAppreciationsFor(string chauffeurId);
-        Appreciation getAppreciation(string chauffeurId);
-        Appreciation GetAppreciationById(string trajetId);
-        IEnumerable<Appreciation> GetAllAppreciation();
         IEnumerable<Appreciation> GetAppreciationsFor(string chauffeurId);
+        Appreciation GetAppreciation(string appreciationId);
+        IEnumerable<Appreciation> GetAllAppreciations();
         void CreateAppreciation(Appreciation appreciation);
         void DeleteAppreciation(string id);
         void UpdateAppreciation(Appreciation trajet);

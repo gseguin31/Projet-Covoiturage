@@ -19,27 +19,17 @@ namespace Projet_Covoiturage.DAL.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Appreciation> GetAllAppreciation()
+        public IEnumerable<Appreciation> GetAllAppreciations()
         {
             throw new NotImplementedException();
         }
 
-        public Appreciation getAppreciation(string chauffeurId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Appreciation GetAppreciationById(string trajetId)
+        public Appreciation getAppreciation(string appreciationId)
         {
             throw new NotImplementedException();
         }
 
         public IEnumerable<Appreciation> getAppreciationsFor(string chauffeurId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Appreciation> GetAppreciationsFor(string chauffeurId)
         {
             throw new NotImplementedException();
         }

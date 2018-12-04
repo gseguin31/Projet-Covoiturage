@@ -10,7 +10,7 @@ namespace Projet_Covoiturage.DAL.Services
 {
     public class ServiceClient : IServiceClient
     {
-        public Client GetClientById(string clientId)
+        public Client GetClient(string clientId)
         {
             return uow.ClientRepository.GetByID(clientId);
         }
