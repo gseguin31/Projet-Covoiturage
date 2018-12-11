@@ -39,64 +39,99 @@ namespace Projet_Covoiturage.DAL.Services
 
         public double GetConfortAVGFor(string chauffeurId)
         {
-            var query = uow.AppreciationRepository.dbSet
-            .Join(GetTrajetsFor(chauffeurId),
-            x => x.Trajet.Id,
-            y => y.Id,
-            (x, y) => new { Appreciation = x, Trajet = y });
+            var query1 = uow.ChauffeurRepository.dbSet
+                .Join(uow.TrajetRepository.dbSet,
+                x => x.Id,
+                y => y.Chauffeur.Id,
+                (x, y) => new { Chauffeur = x, Trajet = y })
+                .Join(uow.AppreciationRepository.dbSet,
+                y => y.Trajet.Id,
+                z => z.Trajet.Id,
+                (y, z) => new { ChauffeurTrajet = y, Appreciation = z })
+                .Where(c => c.ChauffeurTrajet.Chauffeur.Id.Equals(chauffeurId));
 
-            return query.Count() > 0 ? query.Average(AppreciationChauffeur => 
-            AppreciationChauffeur.Appreciation.Confort) : 0;
 
+            double avg = query1.Count() > 0 ? query1
+                .Average(AppreciationChauffeur => AppreciationChauffeur.Appreciation.Confort) : 0;
+
+            return avg;
         }
 
         public double GetCourtoisieAVGFor(string chauffeurId)
         {
 
-            var query = uow.AppreciationRepository.dbSet
-            .Join(GetTrajetsFor(chauffeurId),
-            x => x.Trajet.Id,
-            y => y.Id,
-            (x, y) => new { Appreciation = x, Trajet = y });
+            var query1 = uow.ChauffeurRepository.dbSet
+               .Join(uow.TrajetRepository.dbSet,
+               x => x.Id,
+               y => y.Chauffeur.Id,
+               (x, y) => new { Chauffeur = x, Trajet = y })
+               .Join(uow.AppreciationRepository.dbSet,
+               y => y.Trajet.Id,
+               z => z.Trajet.Id,
+               (y, z) => new { ChauffeurTrajet = y, Appreciation = z })
+               .Where(c => c.ChauffeurTrajet.Chauffeur.Id.Equals(chauffeurId));
 
-            return query.Count() > 0 ? query.Average(AppreciationChauffeur => 
-            AppreciationChauffeur.Appreciation.Courtoisie) : 0;
+            double avg = query1.Count() > 0 ? query1
+                .Average(AppreciationChauffeur => AppreciationChauffeur.Appreciation.Courtoisie) : 0;
+
+            return avg;
         }
 
         public double GetFiabiliteAVGFor(string chauffeurId)
         {
-            var query = uow.AppreciationRepository.dbSet
-            .Join(GetTrajetsFor(chauffeurId),
-            x => x.Trajet.Id,
-            y => y.Id,
-            (x, y) => new { Appreciation = x, Trajet = y });
+            var query1 = uow.ChauffeurRepository.dbSet
+               .Join(uow.TrajetRepository.dbSet,
+               x => x.Id,
+               y => y.Chauffeur.Id,
+               (x, y) => new { Chauffeur = x, Trajet = y })
+               .Join(uow.AppreciationRepository.dbSet,
+               y => y.Trajet.Id,
+               z => z.Trajet.Id,
+               (y, z) => new { ChauffeurTrajet = y, Appreciation = z })
+               .Where(c => c.ChauffeurTrajet.Chauffeur.Id.Equals(chauffeurId));
 
-            return query.Count() > 0 ? query.Average(AppreciationChauffeur => 
-            AppreciationChauffeur.Appreciation.Fiabilite) : 0;
+            double avg = query1.Count() > 0 ? query1
+                .Average(AppreciationChauffeur => AppreciationChauffeur.Appreciation.Fiabilite) : 0;
+
+            return avg;
         }
 
         public double GetPonctualiteAVGFor(string chauffeurId)
         {
-            var query = uow.AppreciationRepository.dbSet
-            .Join(GetTrajetsFor(chauffeurId),
-            x => x.Trajet.Id,
-            y => y.Id,
-            (x, y) => new { Appreciation = x, Trajet = y });
+            var query1 = uow.ChauffeurRepository.dbSet
+               .Join(uow.TrajetRepository.dbSet,
+               x => x.Id,
+               y => y.Chauffeur.Id,
+               (x, y) => new { Chauffeur = x, Trajet = y })
+               .Join(uow.AppreciationRepository.dbSet,
+               y => y.Trajet.Id,
+               z => z.Trajet.Id,
+               (y, z) => new { ChauffeurTrajet = y, Appreciation = z })
+               .Where(c => c.ChauffeurTrajet.Chauffeur.Id.Equals(chauffeurId));
 
-            return query.Count() > 0 ? query.Average(AppreciationChauffeur =>
-            AppreciationChauffeur.Appreciation.Ponctualite) : 0;
+            double avg = query1.Count() > 0 ? query1
+                .Average(AppreciationChauffeur => AppreciationChauffeur.Appreciation.Ponctualite) : 0;
+
+            return avg;
         }
 
         public double GetSecuriteAVGFor(string chauffeurId)
         {
-            var query = uow.AppreciationRepository.dbSet
-            .Join(GetTrajetsFor(chauffeurId),
-            x => x.Trajet.Id,
-            y => y.Id,
-            (x, y) => new { Appreciation = x, Trajet = y });
+            var query1 = uow.ChauffeurRepository.dbSet
+               .Join(uow.TrajetRepository.dbSet,
+               x => x.Id,
+               y => y.Chauffeur.Id,
+               (x, y) => new { Chauffeur = x, Trajet = y })
+               .Join(uow.AppreciationRepository.dbSet,
+               y => y.Trajet.Id,
+               z => z.Trajet.Id,
+               (y, z) => new { ChauffeurTrajet = y, Appreciation = z })
+               .Where(c => c.ChauffeurTrajet.Chauffeur.Id.Equals(chauffeurId));
 
-            return query.Count() > 0 ? query.Average(AppreciationChauffeur =>
-                        AppreciationChauffeur.Appreciation.Securite) : 0;
+            double avg = query1.Count() > 0 ? query1
+                .Average(AppreciationChauffeur => AppreciationChauffeur.Appreciation.Securite) : 0;
+
+            return avg;
         }
 
         public double GetTotalKmFor(string chauffeurId)
