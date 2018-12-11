@@ -10,6 +10,7 @@ using Projet_Covoiturage.Models;
 
 namespace Projet_Covoiturage.Controllers
 {
+    [Authorize]
     public class AppreciationsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

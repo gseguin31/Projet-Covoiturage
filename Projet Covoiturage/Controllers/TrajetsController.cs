@@ -36,16 +36,17 @@ namespace Projet_Covoiturage.Controllers
         [Route]
         public ActionResult Index([Bind(Include = "Depard,Arriver")] FilteTrajet filtre)
         {
+          
             return View("Index");
         }
         public ActionResult Indexfiltre(FilteTrajet filtreTrajet)
         {
-            if(filtreTrajet==null)
+            if(filtreTrajet == null ||  filtreTrajet.Arriver==null||filtreTrajet.Depard==null)
             {
-                View(serviceTrajet.GetAllTrajet());
+               return PartialView(serviceTrajet.GetAllTrajet());
             }
 
-            return View(serviceTrajet.GetTrajetsFor(filtreTrajet.Depard, filtreTrajet.Arriver));
+            return PartialView(serviceTrajet.GetTrajetsFor(filtreTrajet.Depard, filtreTrajet.Arriver));
         }
         //public ActionResult Index()
         //{
