@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -31,13 +32,13 @@ namespace Projet_Covoiturage.Controllers
 
         public ActionResult ChangeCultureEN()
         {
-            System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en");
-            return Redirect(Request.UrlReferrer.PathAndQuery);
+            Session["Culture"] = new CultureInfo("en-CA");
+            return RedirectToAction("Index");
         }
         public ActionResult ChangeCultureFR()
         {
-            System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr");
-            return Redirect(Request.UrlReferrer.PathAndQuery);
+            Session["Culture"] = new CultureInfo("fr-CA");
+            return RedirectToAction("Index");
         }
     }
 }

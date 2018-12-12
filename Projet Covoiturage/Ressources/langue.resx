@@ -159,8 +159,14 @@
   <data name="EnterEmail" xml:space="preserve">
     <value>Entrer votre adresse email.</value>
   </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Prénom</value>
+  </data>
   <data name="ForgotPassword" xml:space="preserve">
     <value>Oublier votre mot de passe ?</value>
+  </data>
+  <data name="HireDate" xml:space="preserve">
+    <value>Date d'embauche</value>
   </data>
   <data name="LastName" xml:space="preserve">
     <value>Nom</value>
@@ -170,6 +176,9 @@
   </data>
   <data name="Model" xml:space="preserve">
     <value>Modèle</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Mot de passe</value>
   </data>
   <data name="Places" xml:space="preserve">
     <value>Nombre de place</value>
@@ -182,6 +191,12 @@
   </data>
   <data name="RegisterNewUser" xml:space="preserve">
     <value>S'inscrire comme nouvel utilisateur</value>
+  </data>
+  <data name="RememberBrowser" xml:space="preserve">
+    <value>Mémoriser ce navigateur ?</value>
+  </data>
+  <data name="RememberPassword" xml:space="preserve">
+    <value>Mémoriser ce mot de passe ?</value>
   </data>
   <data name="ResetPassword" xml:space="preserve">
     <value>Réinitialisez votre mot de passe.</value>
