@@ -5,6 +5,6 @@
 <h2>@ViewBag.Title.</h2>
 <div>
     <p>
-        Merci d'avoir confirmé votre e-mail. Veuillez @Html.ActionLink("Cliquer ici pour vous connecter", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+        @Projet_Covoiturage.Ressources.langue.ConfirmEmail @Html.ActionLink(Projet_Covoiturage.Ressources.langue.ClickToLogin, "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
     </p>
 </div>

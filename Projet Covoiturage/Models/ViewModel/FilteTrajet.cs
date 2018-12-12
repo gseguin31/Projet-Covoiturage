@@ -7,7 +7,7 @@ namespace Projet_Covoiturage.Models.ViewModel
 {
     public class FilteTrajet
     {
-        public string Depard { get; set; }
+        public string Depart { get; set; }
         public string Arriver { get; set; }
     }
 }

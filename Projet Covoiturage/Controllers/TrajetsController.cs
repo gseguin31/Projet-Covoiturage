@@ -41,12 +41,12 @@ namespace Projet_Covoiturage.Controllers
         }
         public ActionResult Indexfiltre(FilteTrajet filtreTrajet)
         {
-            if(filtreTrajet == null ||  filtreTrajet.Arriver==null||filtreTrajet.Depard==null)
+            ////if(filtreTrajet == null ||  filtreTrajet.Arriver==null||filtreTrajet.Depart==null)
             {
                return PartialView(serviceTrajet.GetAllTrajet());
             }
 
-            return PartialView(serviceTrajet.GetTrajetsFor(filtreTrajet.Depard, filtreTrajet.Arriver));
+            return PartialView(serviceTrajet.GetTrajetsFor(filtreTrajet.Depart, filtreTrajet.Arriver));
         }
         //public ActionResult Index()
         //{

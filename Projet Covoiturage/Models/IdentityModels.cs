@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -17,11 +18,17 @@ namespace Projet_Covoiturage.Models
             // Ajouter les revendications personnalisées de l’utilisateur ici
             return userIdentity;
         }
+        [Display(Name = "LastName", ResourceType = typeof(Ressources.langue))]
         public string Nom { get; set; }
+        [Display(Name = "FirstName", ResourceType = typeof(Ressources.langue))]
         public string Prenom { get; set; }
+        [Display(Name = "Email", ResourceType = typeof(Ressources.langue))]
         public string Courriel { get; set; }
+        [Display(Name = "Telephone", ResourceType = typeof(Ressources.langue))]
         public string Telephone { get; set; }
+        [Display(Name = "Town", ResourceType = typeof(Ressources.langue))]
         public string Ville { get; set; }
+        [Display(Name = "Age", ResourceType = typeof(Ressources.langue))]
         public int Age { get; set; }
         public virtual Chauffeur Chauffeur { get; set; }
     }
