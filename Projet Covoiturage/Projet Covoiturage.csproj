@@ -305,6 +305,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-Projet Covoiturage-20181126051145.mdf" />
+    <Content Include="App_Data\aspnet-Projet Covoiturage-20181126051145_log.ldf">
+      <DependentUpon>aspnet-Projet Covoiturage-20181126051145.mdf</DependentUpon>
+    </Content>
     <Content Include="bin\Projet Covoiturage.dll" />
     <Content Include="bin\Projet Covoiturage.pdb" />
     <Content Include="bin\roslyn\csc.exe" />
@@ -432,7 +436,6 @@
     <Content Include="Views\Trajets\Indexfiltre.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="bin\bin\en\" />
     <Folder Include="obj\Debug\" />
     <Folder Include="Projet_Covoiturage\" />
