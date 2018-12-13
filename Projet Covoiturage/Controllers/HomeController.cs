@@ -33,12 +33,13 @@ namespace Projet_Covoiturage.Controllers
         public ActionResult ChangeCultureEN()
         {
             Session["Culture"] = new CultureInfo("en-CA");
-            return RedirectToAction("Index");
+            return RedirectToAction(Request.UrlReferrer.ToString());
+       
         }
         public ActionResult ChangeCultureFR()
         {
             Session["Culture"] = new CultureInfo("fr-CA");
-            return RedirectToAction("Index");
+            return RedirectToAction(Request.UrlReferrer.ToString());
         }
     }
 }
