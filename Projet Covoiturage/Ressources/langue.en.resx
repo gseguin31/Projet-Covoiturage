@@ -120,7 +120,7 @@
   <data name="Age" xml:space="preserve">
     <value>Age</value>
   </data>
-  <data name="ArrivalDate" xml:space="preserve">
+  <data name="ArrivalTime" xml:space="preserve">
     <value>Arrival date</value>
   </data>
   <data name="ArrivalTown" xml:space="preserve">
