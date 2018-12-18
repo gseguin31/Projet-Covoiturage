@@ -223,7 +223,15 @@ namespace Projet_Covoiturage.Controllers
                     Nom = model.Nom,
                     Telephone = model.Telephone,
                     Prenom = model.Prenom,
-                    Ville = model.ville
+                    Ville = model.ville,
+                };
+                user.Chauffeur = new Chauffeur
+                {
+                    Id = user.Id,
+                    DateEmbauche = DateTime.Now,
+                    DatePermis = model.DatePermis,
+                    Vehicule = new Vehicule { Id = user.Id, Modele = model.Modele, DateMiseEnRoute = model.DateMiseEnRoute, NombrePlace = model.NombrePlace },
+                    Trajets = new List<Trajet>()
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -235,20 +243,23 @@ namespace Projet_Covoiturage.Controllers
                     //attribution du role
                     UserManager.AddToRole(user.Id, "Chauffeur");
 
-                    Chauffeur chauffeur = new Chauffeur
-                    {
-                        Id = user.Id,
-                        DateEmbauche = DateTime.Now,
-                        DatePermis = model.DatePermis,
-                        Vehicule = new Vehicule { Id = user.Id, Modele = model.Modele, DateMiseEnRoute = model.DateMiseEnRoute, NombrePlace = model.NombrePlace },
-                        Trajets = new List<Trajet>()
-                    };
+                    //Chauffeur chauffeur = new Chauffeur
+                    //{
+                    //    Id = user.Id,
+                    //    DateEmbauche = DateTime.Now,
+                    //    DatePermis = model.DatePermis,
+                    //    Vehicule = new Vehicule { Id = user.Id, Modele = model.Modele, DateMiseEnRoute = model.DateMiseEnRoute, NombrePlace = model.NombrePlace },
+                    //    Trajets = new List<Trajet>()
+                    //};
+                    
 
-                    _serviceChauffeur.CreateVehicule(chauffeur.Vehicule);
-                    _serviceChauffeur.CreateChauffeur(chauffeur);
+                    //_serviceChauffeur.CreateVehicule(chauffeur.Vehicule);
+                    //_serviceChauffeur.CreateChauffeur(chauffeur);
+
+                    //user.Chauffeur = chauffeur;
 
                     // TODO rediriger vers les detail du chauffeur id cree dans le controleur chauffeur
-                    return RedirectToAction("Details", "Chauffeurs", chauffeur);
+                    return RedirectToAction("Details", "Chauffeurs", user.Chauffeur);
                 }
                 AddErrors(result);
             }

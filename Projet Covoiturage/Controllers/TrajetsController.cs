@@ -22,6 +22,7 @@ namespace Projet_Covoiturage.Controllers
         private IServiceTrajet serviceTrajet;
         private IServiceReservation serviceReservation;
         private IServiceClient serviceClient;
+        private ApplicationUserManager _userManager;
         // GET: Trajets
 
         public TrajetsController(IServiceTrajet serviceTrajet, IServiceReservation serviceReservation, IServiceClient serviceClient)
@@ -31,7 +32,19 @@ namespace Projet_Covoiturage.Controllers
             this.serviceReservation = serviceReservation;
             this.serviceClient = serviceClient;
         }
-        
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+
         // GET: Trajets
         [Route]
         public ActionResult Index([Bind(Include = "Depard,Arriver")] FilteTrajet filtre)
@@ -46,7 +59,7 @@ namespace Projet_Covoiturage.Controllers
                return PartialView(serviceTrajet.GetAllTrajet());
             }
 
-            return PartialView(serviceTrajet.GetTrajetsFor(filtreTrajet.Depart, filtreTrajet.Arriver));
+            // return PartialView(serviceTrajet.GetTrajetsFor(filtreTrajet.Depart, filtreTrajet.Arriver));
         }
         //public ActionResult Index()
         //{
@@ -71,18 +84,28 @@ namespace Projet_Covoiturage.Controllers
             return View(trajet);
         }
 
+        [Authorize(Roles = "Chauffeur")]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
         // POST: Trajets/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Chaufeur")]
+        [Authorize(Roles = "Chauffeur")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,VilleDepart,VilleDestination,DateDepart,HeureArrivee")] Trajet trajet)
         {
             if (ModelState.IsValid)
             {
-                db.Trajets.Add(trajet);
-                db.SaveChanges();
+                string currentUserId = User.Identity.GetUserId();
+                ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserId);
+
+                trajet.NombreDePlaceDisponible = currentUser.Chauffeur.Vehicule.NombrePlace;
+                trajet.Id = Guid.NewGuid().ToString();
+                this.serviceTrajet.CreateTrajet(trajet);
                 return RedirectToAction("Index");
             }
 
@@ -146,21 +169,26 @@ namespace Projet_Covoiturage.Controllers
         //    return RedirectToAction("Index");
         //}
         [Authorize(Roles = "Client")]
-        public void Reserver(string idTrajet, string userId)
+        public void Reserver(string idTrajet)
         {
+            string currentUserId = User.Identity.GetUserId();
+            ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserId);
+
             Trajet trajetReserver = serviceTrajet.GetTrajetById(idTrajet);
 
             //User manager n'est pas injectable. il va faloir trouver un autre facon d'avoir le user.
 
            //ApplicationUser user = this.applicationManager.FindById(User.Identity.GetUserId());
-            ApplicationUser user = serviceClient.GetClient(userId);
+            //ApplicationUser user = serviceClient.GetClient(userId);
 
             Reservation reservation = new Reservation();
 
-            reservation.ClientId = user.Id;
+            reservation.ClientId = currentUser.Id;
             reservation.TrajetId = trajetReserver.Id;
 
             serviceReservation.CreateReservation(reservation);
+
+
         }
 
         protected override void Dispose(bool disposing)

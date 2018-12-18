@@ -32,6 +32,13 @@ namespace Projet_Covoiturage.DAL.Services
             return uow.TrajetRepository.Get().ToList();
         }
 
+        public IEnumerable<Trajet> GetAllTrajetWithRemainingSpace()
+        {
+            List<Trajet> results = new List<Trajet>();
+
+            return results;
+        }
+
         public Trajet GetTrajetById(string trajetId)
         {
             return uow.TrajetRepository.GetByID(trajetId);

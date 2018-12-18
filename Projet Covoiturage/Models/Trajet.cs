@@ -19,6 +19,7 @@ namespace Projet_Covoiturage.Models
         public DateTime DateDepart { get; set; }
         [Display(Name = "ArrivalTime", ResourceType = typeof(Ressources.langue))]
         public DateTime HeureArrivee { get; set; }
+        public int NombreDePlaceDisponible { get; set; }
         public virtual List<Reservation>  Reservations {get; set;}
         public virtual List<Appreciation> Appreciations { get; set; }    
         public virtual Chauffeur Chauffeur { get; set; }
