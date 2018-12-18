@@ -201,6 +201,9 @@
   <data name="ResetPassword" xml:space="preserve">
     <value>Réinitialisez votre mot de passe.</value>
   </data>
+  <data name="RoadDate" xml:space="preserve">
+    <value>Date de mise en route</value>
+  </data>
   <data name="StartDate" xml:space="preserve">
     <value>Date de départ</value>
   </data>

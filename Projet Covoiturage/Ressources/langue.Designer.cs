@@ -313,6 +313,15 @@ namespace Projet_Covoiturage.Ressources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date de mise en route.
+        /// </summary>
+        public static string RoadDate {
+            get {
+                return ResourceManager.GetString("RoadDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date de départ.
         /// </summary>
         public static string StartDate {
