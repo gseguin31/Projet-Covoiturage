@@ -35,6 +35,15 @@ namespace Projet_Covoiturage.DAL.Services
         public IEnumerable<Trajet> GetAllTrajetWithRemainingSpace()
         {
             List<Trajet> results = new List<Trajet>();
+            List<Trajet> trajet = uow.TrajetRepository.Get().ToList();
+            foreach (Trajet trajetCourrant in trajet)
+            {
+                int placeDePrise = uow.TrajetRepository.GetByID(trajetCourrant.Id).Reservations.Count;
+                if (placeDePrise < trajetCourrant.NombreDePlaceDuVehicule)
+                {
+                    results.Add(trajetCourrant);
+                }
+            }
 
             return results;
         }

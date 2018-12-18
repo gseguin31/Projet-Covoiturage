@@ -56,7 +56,7 @@ namespace Projet_Covoiturage.Controllers
         {
             ////if(filtreTrajet == null ||  filtreTrajet.Arriver==null||filtreTrajet.Depart==null)
             {
-               return PartialView(serviceTrajet.GetAllTrajet());
+               return PartialView(serviceTrajet.GetAllTrajetWithRemainingSpace());
             }
 
             // return PartialView(serviceTrajet.GetTrajetsFor(filtreTrajet.Depart, filtreTrajet.Arriver));
@@ -102,9 +102,12 @@ namespace Projet_Covoiturage.Controllers
             {
                 string currentUserId = User.Identity.GetUserId();
                 ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserId);
+                
 
-                trajet.NombreDePlaceDisponible = currentUser.Chauffeur.Vehicule.NombrePlace;
+                trajet.NombreDePlaceDuVehicule = currentUser.Chauffeur.Vehicule.NombrePlace;
                 trajet.Id = Guid.NewGuid().ToString();
+                // TODO doit ajouter le chauffeur au trajet pour avoir un chauffeur id mais cree un probleme sur le insert
+               // trajet.Chauffeur = currentUser.Chauffeur;
                 this.serviceTrajet.CreateTrajet(trajet);
                 return RedirectToAction("Index");
             }
