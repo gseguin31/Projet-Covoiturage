@@ -20,18 +20,17 @@ namespace Projet_Covoiturage.DAL.Services
         public void CreateTrajet(Trajet trajet)
         {
             uow.TrajetRepository.Insert(trajet);
+            uow.Save();
         }
-
         public void DeleteTrajet(string id)
         {
             uow.TrajetRepository.Delete(id);
+            uow.Save();
         }
-
         public IEnumerable<Trajet> GetAllTrajet()
         {
             return uow.TrajetRepository.Get().ToList();
         }
-
         public IEnumerable<Trajet> GetAllTrajetWithRemainingSpace()
         {
             List<Trajet> results = new List<Trajet>();
@@ -42,15 +41,16 @@ namespace Projet_Covoiturage.DAL.Services
                 if (placeDePrise < trajetCourrant.NombreDePlaceDuVehicule)
                 {
                     results.Add(trajetCourrant);
+                
                 }
             }
-
             return results;
         }
 
         public Trajet GetTrajetById(string trajetId)
         {
             return uow.TrajetRepository.GetByID(trajetId);
+
         }
 
         public IEnumerable<Trajet> GetTrajetsFor(string chauffeurId)
@@ -66,6 +66,12 @@ namespace Projet_Covoiturage.DAL.Services
         public void UpdateTrajet(Trajet trajet)
         {
             uow.TrajetRepository.Update(trajet);
+            uow.Save();
+        }
+        public void ReserveTrajet(string idTrajet,string idClient)
+        {
+            
+            uow.ReservationRepository.Insert(new Reservation() {TrajetId=idTrajet,ClientId=idClient});
         }
     }
 }

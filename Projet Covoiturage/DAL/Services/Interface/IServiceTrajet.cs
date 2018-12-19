@@ -17,6 +17,9 @@ namespace Projet_Covoiturage.DAL.Services.Interface
         void CreateTrajet(Trajet trajet);
         void DeleteTrajet(string id);
         void UpdateTrajet(Trajet trajet);
-        
+
+        void ReserveTrajet(string idTrajet, string idClient);
+
+
     }
 }

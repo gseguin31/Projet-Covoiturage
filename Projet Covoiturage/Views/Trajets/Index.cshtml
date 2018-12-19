@@ -21,21 +21,16 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" onclick="update()" value="Index" class="btn btn-default" />
-        </div>
-
-    </div>
 }
-<script type="text/javascript">
+    <script type="text/javascript">
     $(document).ready(function () {
 
         function update() {
-            @Url.Action("Indexfiltre","Trajets",new {filtreTrajet=Model})
+           @Html.ActionLink("rechercher","Indexfiltre", "Trajets", new { filtreTrajet = Model })
         }
     });
-</script>
+    </script>
+
 <div>
-    @Html.Action("Indexfiltre", "Trajets", new { filtreTrajet = Model })
+    @Html.ActionLink("rechercher","Indexfiltre", "Trajets", new { filtreTrajet = Model })
 </div>

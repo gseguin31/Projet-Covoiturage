@@ -40,7 +40,7 @@
         </td>
         <td>
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Reservation","Reserver",new { idTrajet = item.Id, userId = User.Identity.Name})
+            @Html.ActionLink("Reservation", "Reserver", "Trajets", new { idTrajet = item.Id })
         </td>
     </tr>
 }

@@ -18,11 +18,11 @@ namespace Projet_Covoiturage.Controllers
     //[Authorize]
     public class TrajetsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+
         private IServiceTrajet serviceTrajet;
         private IServiceReservation serviceReservation;
         private IServiceClient serviceClient;
-        private ApplicationUserManager _userManager;
+    
         // GET: Trajets
 
         public TrajetsController(IServiceTrajet serviceTrajet, IServiceReservation serviceReservation, IServiceClient serviceClient)
@@ -33,18 +33,7 @@ namespace Projet_Covoiturage.Controllers
             this.serviceClient = serviceClient;
         }
 
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
-
+      
         // GET: Trajets
         [Route]
         public ActionResult Index([Bind(Include = "Depard,Arriver")] FilteTrajet filtre)
@@ -54,12 +43,12 @@ namespace Projet_Covoiturage.Controllers
         }
         public ActionResult Indexfiltre(FilteTrajet filtreTrajet)
         {
-            ////if(filtreTrajet == null ||  filtreTrajet.Arriver==null||filtreTrajet.Depart==null)
+            if(filtreTrajet == null ||  filtreTrajet.Arriver==null||filtreTrajet.Depart==null)
             {
-               return PartialView(serviceTrajet.GetAllTrajetWithRemainingSpace());
+               return View(serviceTrajet.GetAllTrajet());
             }
 
-            // return PartialView(serviceTrajet.GetTrajetsFor(filtreTrajet.Depart, filtreTrajet.Arriver));
+           return View(serviceTrajet.GetTrajetsFor(filtreTrajet.Depart, filtreTrajet.Arriver));
         }
         //public ActionResult Index()
         //{
@@ -101,10 +90,10 @@ namespace Projet_Covoiturage.Controllers
             if (ModelState.IsValid)
             {
                 string currentUserId = User.Identity.GetUserId();
-                ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserId);
+            
                 
 
-                trajet.NombreDePlaceDuVehicule = currentUser.Chauffeur.Vehicule.NombrePlace;
+  //              trajet.NombreDePlaceDuVehicule = currentUser.Chauffeur.Vehicule.NombrePlace;
                 trajet.Id = Guid.NewGuid().ToString();
                 // TODO doit ajouter le chauffeur au trajet pour avoir un chauffeur id mais cree un probleme sur le insert
                // trajet.Chauffeur = currentUser.Chauffeur;
@@ -139,8 +128,7 @@ namespace Projet_Covoiturage.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(trajet).State = EntityState.Modified;
-                db.SaveChanges();
+                serviceTrajet.CreateTrajet(trajet);
                 return RedirectToAction("Index");
             }
             return View(trajet);
@@ -175,32 +163,23 @@ namespace Projet_Covoiturage.Controllers
         public void Reserver(string idTrajet)
         {
             string currentUserId = User.Identity.GetUserId();
-            ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserId);
-
             Trajet trajetReserver = serviceTrajet.GetTrajetById(idTrajet);
-
-            //User manager n'est pas injectable. il va faloir trouver un autre facon d'avoir le user.
+  
+        
 
            //ApplicationUser user = this.applicationManager.FindById(User.Identity.GetUserId());
             //ApplicationUser user = serviceClient.GetClient(userId);
 
-            Reservation reservation = new Reservation();
+         
 
-            reservation.ClientId = currentUser.Id;
-            reservation.TrajetId = trajetReserver.Id;
+          //  reservation.ClientId = currentUser.Id;
+            
 
-            serviceReservation.CreateReservation(reservation);
+            serviceTrajet.ReserveTrajet(idTrajet,currentUserId);
 
 
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+      
     }
 }

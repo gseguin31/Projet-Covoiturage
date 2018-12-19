@@ -62,9 +62,9 @@ namespace Projet_Covoiturage.DAL.UnitOfWork
         {
             get
             {
-                if (chauffeurRepo == null)
+                if (clientRepo == null)
                 {
-                    chauffeurRepo = new GenericRepository<Chauffeur>(context);
+                    clientRepo = new GenericRepository<Client>(context);
                 }
                 return clientRepo;
             }
