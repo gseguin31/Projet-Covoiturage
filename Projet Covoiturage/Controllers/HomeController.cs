@@ -12,7 +12,7 @@ namespace Projet_Covoiturage.Controllers
     {
         public ActionResult Index()
         {
-            Session["Culture"] = new CultureInfo("fr");
+
             return View();
         }
 
@@ -30,16 +30,19 @@ namespace Projet_Covoiturage.Controllers
             return View();
         }
 
-        public ActionResult ChangeCultureEN()
+        public ActionResult EN()
         {
-            Session["Culture"] = new CultureInfo("en-CA");
-            return RedirectToAction(Request.UrlReferrer.ToString());
+            Session["Culture"] = new CultureInfo("en");
+            String url = Request.UrlReferrer.ToString();
+            return Redirect(url);
        
         }
-        public ActionResult ChangeCultureFR()
+        public ActionResult FR()
         {
-            Session["Culture"] = new CultureInfo("fr-CA");
-            return RedirectToAction(Request.UrlReferrer.ToString());
+            Session["Culture"] = new CultureInfo("fr");
+            String url = Request.UrlReferrer.ToString();
+            return Redirect(url);
+
         }
     }
 }

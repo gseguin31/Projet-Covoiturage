@@ -20,8 +20,8 @@
                     Menu
                 </button>
                 @Html.ActionLink("Super Uber Infini !", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Français","ChangeCultureFR", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("English", "ChangeCultureEN", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Français","FR", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("English", "EN", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -29,6 +29,8 @@
                     <li>@Html.ActionLink("Evaluation des trajet", "Index", "Appreciations")</li>
                     <li>@Html.ActionLink("Reserver des Trajet", "Index", "trajets")</li>
                     <li>@Html.ActionLink("Cree un Trajet ", "Create", "trajets")</li>
+              
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
